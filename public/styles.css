@@ -1,0 +1,13 @@
+/* 
+set all parent elements' height to allow for percentage height of children 
+.ng-scope is class of ng-view
+*/
+html, body, .ng-scope, .container {
+    height: 100%;
+}
+.topics-row {
+    height: 66%;
+}
+.topics-col {
+    height: 100%;
+}
