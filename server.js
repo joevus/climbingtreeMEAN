@@ -13,7 +13,12 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes \\
-app.use("api/resources", require("./routes/resourceRoutes"));
+app.use("/api/resources", require("./routes/resourceRoutes"));
+app.use("/api/topics", require("./routes/topicRoutes"));
+
+mongoose.connect("mongodb://localhost/climbingtree", function() {
+    console.log("Database is connected");
+});
 
 app.listen(port, function(){
     console.log("server listening on port: " + port);

@@ -12,3 +12,5 @@ var TopicSchema = new Schema({
         ref: "Topic"
     }]
 });
+
+module.exports = mongoose.model("Topic", TopicSchema);
