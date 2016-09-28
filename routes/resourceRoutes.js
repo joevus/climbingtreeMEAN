@@ -29,7 +29,7 @@ resourceRoutes.route("/:id")
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.send()
+                res.send(resourceObj);
             }
         })
     })
