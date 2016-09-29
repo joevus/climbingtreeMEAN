@@ -6,6 +6,7 @@ var ResourceSchema = new Schema({
         type: String,
         require: true
     },
+    avgRating: Number,
     description: String,
     url: String,
     imgUrl: String,
