@@ -8,6 +8,6 @@ app.config(["$routeProvider", function($routeProvider) {
         })
         .when("/topics/:mainTopic", {
             templateUrl: "components/topics/topics.html",
-            controllwer: "TopicsController"
+            controller: "TopicsController"
         })
 }]);

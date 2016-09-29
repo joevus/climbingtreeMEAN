@@ -64,7 +64,10 @@ topicRoutes.route("/:id")
 
 topicRoutes.route("/childrenbyname/:parentName")
     .get(function(req, res) {
-        Topic.find({ "name": req.params.parentName }, 'children', function(err, topics){
+        Topic
+        .findOne({ "name": req.params.parentName })
+        .populate('children')
+        .exec(function(err, topics){
             if(err){
                 res.status(500).send(err);
             } else {
