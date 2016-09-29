@@ -6,4 +6,8 @@ app.config(["$routeProvider", function($routeProvider) {
             templateUrl: "components/home/home.html",
             controller: "HomeController"
         })
+        .when("/topics/:mainTopic", {
+            templateUrl: "components/topics/topics.html",
+            controllwer: "TopicsController"
+        })
 }]);

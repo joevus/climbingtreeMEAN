@@ -28,4 +28,49 @@ topicRoutes.route("/")
         });
     });
 
+topicRoutes.route("/:id")
+    .get(function (req, res) {
+        Topic.findById(req.params.id, function(err, topicObj) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                res.send(topicObj)
+            }
+        });
+    })
+    .put(function (req, res) {
+        Topic.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTopic) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                res.send(updatedTopic);
+            }
+        })
+    })
+    .delete(function(req, res) {
+        Topic.findByIdAndRemove(req.params.id, function(err, deletedTopic) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                var responseObj = {
+                    success: true,
+                    message: "succesfully deleted topic",
+                    topic: deletedTopic
+                }
+                res.send(responseObj);
+            }
+        });
+    });
+
+topicRoutes.route("/childrenbyname/:parentName")
+    .get(function(req, res) {
+        Topic.find({ "name": req.params.parentName }, 'children', function(err, topics){
+            if(err){
+                res.status(500).send(err);
+            } else {
+                res.send(topics);
+            }
+        });
+    });
+
 module.exports = topicRoutes;
