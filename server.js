@@ -15,6 +15,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes \\
 app.use("/api/resources", require("./routes/resourceRoutes"));
 app.use("/api/topics", require("./routes/topicRoutes"));
+app.use("/api/ratings", require("./routes/ratingRoutes"));
+app.use("/api/comments", require("./routes/commentRoutes"));
 
 mongoose.connect("mongodb://localhost/climbingtree", function() {
     console.log("Database is connected");

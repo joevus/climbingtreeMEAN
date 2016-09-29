@@ -9,7 +9,7 @@ var ResourceSchema = new Schema({
     description: String,
     url: String,
     imgUrl: String,
-    topicId: {
+    topic: {
         type: Schema.Types.ObjectId,
         ref: 'topic'
     }

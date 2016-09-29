@@ -25,13 +25,13 @@ resourceRoutes.route("/")
 
 resourceRoutes.route("/:id")
     .get(function (req, res) {
-        Resource.findById(req.params.id, function(err, resourceObj){
+        Resource.findById(req.params.id, function (err, resourceObj) {
             if (err) {
                 res.status(500).send(err);
             } else {
                 res.send(resourceObj);
             }
         })
-    })
+    });
 
 module.exports = resourceRoutes;
