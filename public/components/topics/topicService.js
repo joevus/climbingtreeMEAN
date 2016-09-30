@@ -7,12 +7,14 @@ app.service("TopicService", ["$http", "$location", function($http, $location){
     var regexp = /topics\/(.*)/;
     var match = regexp.exec($location.path());
     this.currentTopic = {};
+    this.currentTopic.name = match[1];
     
     this.topicList = [];
     
     // for updating topics when first get to topics page
     this.beginTopics = function() {
-        $http.get("/api/topics/childrenbyname/" + this.currentTopic).then(function(response) {
+        $http.get("/api/topics/childrenbyname/" + self.currentTopic.name).then(function(response) {
+            console.log(self.currentTopic);
             self.currentTopic = response.data;
             var children = response.data.children;
             var newList = [];
