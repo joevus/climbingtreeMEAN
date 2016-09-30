@@ -11,3 +11,9 @@ html, body, .ngview-window, .container {
 .topics-col {
     height: 100%;
 }
+
+.subtopic {
+    width: 36%;
+    margin-top: 3%;
+    margin-left: 5%;
+}
