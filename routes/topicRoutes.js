@@ -76,4 +76,15 @@ topicRoutes.route("/childrenbyname/:parentName")
         });
     });
 
+topicRoutes.route("/childrenbyid/:parentId")
+    .get(function(req, res) {
+        Topic.find({ parent: req.params.parentId}, function(err, topics) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                res.send(topics);
+            }
+        });
+    });
+
 module.exports = topicRoutes;
