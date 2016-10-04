@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.service("TopicService", ["$http", "$location", function($http, $location){
+app.service("TopicService", ["$http", "$location", "DrawingService", function($http, $location, DrawingService){
     var self = this;
     
     // set current topic
@@ -12,7 +12,7 @@ app.service("TopicService", ["$http", "$location", function($http, $location){
     this.topicList = [];
     
     // for updating topics when first get to topics page
-    this.beginTopics = function() {
+    this.beginTopics = function() {        
         $http.get("/api/topics/childrenbyname/" + self.currentTopic.name).then(function(response) {
             console.log(self.currentTopic);
             self.currentTopic = response.data;
@@ -27,7 +27,9 @@ app.service("TopicService", ["$http", "$location", function($http, $location){
     
     // for updating topics on click
     this.getTopics = function(topic) {
-        console.log(topic._id);
+        DrawingService.clearCanvas();
+        
+        console.log("getTopics: " + topic._id);
         self.currentTopic = topic;
         $http.get("/api/topics/childrenbyid/" + topic._id).then(function(response) {
             var children = response.data;

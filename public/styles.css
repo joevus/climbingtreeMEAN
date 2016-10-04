@@ -13,7 +13,18 @@ html, body, .ngview-window, .container {
 }
 
 .subtopic {
-    width: 36%;
+    width: 35%;
     margin-top: 3%;
-    margin-left: 5%;
+    margin-left: 10%;
+}
+
+#topicCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.canvasContainer {
+    position: relative;
+    z-index: -1;
 }
