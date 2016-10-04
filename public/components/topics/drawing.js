@@ -6,7 +6,6 @@ app.service("DrawingService", [function () {
         this.y2List = [];
 
         this.clearCanvas = function () {
-            console.log("in clear canvas");
             var canvas = document.getElementById("topicCanvas");
             var ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);

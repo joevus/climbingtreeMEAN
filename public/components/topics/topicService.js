@@ -14,7 +14,6 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function($h
     // for updating topics when first get to topics page
     this.beginTopics = function() {        
         $http.get("/api/topics/childrenbyname/" + self.currentTopic.name).then(function(response) {
-            console.log(self.currentTopic);
             self.currentTopic = response.data;
             var children = response.data.children;
             var newList = [];
@@ -29,7 +28,6 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function($h
     this.getTopics = function(topic) {
         DrawingService.clearCanvas();
         
-        console.log("getTopics: " + topic._id);
         self.currentTopic = topic;
         $http.get("/api/topics/childrenbyid/" + topic._id).then(function(response) {
             var children = response.data;
