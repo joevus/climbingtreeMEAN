@@ -1,20 +1,27 @@
 <div class="container">
     <div class="row topics-row">
         <div class="col-xs-12 col-md-6 col-md-offset-3 topics-col">
-            <button class="btn btn-lg btn-block btn-primary main-topic">{{TopicService.currentTopic.name}}</button>
+            <h1 class="main-topic-h1">
+                <span class="label label-primary main-topic">{{TopicService.currentTopic.name}}
+                </span>
+                <button type="button" class="btn btn-lg btn-info back-button" aria-label="Left Align">
+                <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                </button>
+            </h1>
+            
             <!-- canvas to draw lines -->
             <div class="canvasContainer">
-            <!-- container to make canvas honor padding of parent col-->
+                <!-- container to make canvas honor padding of parent col-->
                 <canvas id="topicCanvas" width={{canvasWidth}}></canvas>
             </div>
             <button class="btn btn-lg subtopic" ng-repeat="topic in TopicService.topicList" ng-click="TopicService.getTopics(topic)" drawing-directive>{{topic.name}}</button>
-            
+
         </div>
     </div>
     <div class="row carousel-row">
         <!-- directive to display the carousel  -->
     </div>
-    
+
 </div>
 
 
