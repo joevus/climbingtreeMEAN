@@ -2,8 +2,8 @@
     <div class="row topics-row">
         <div class="col-xs-12 col-md-6 col-md-offset-3 topics-col">
             <div class="panel panel-primary">
-                <div class="panel-heading main-topic">
-                    <h2 class="panel-title text-center">
+                <div class="panel-heading">
+                    <h2 class="panel-title main-topic-header">
                         {{TopicService.currentTopic.name}}
                     </h2>
                     <button type="button" class="btn btn-lg btn-info back-button" aria-label="Left Align">
@@ -11,16 +11,6 @@
                     </button>
                 </div>
             </div>
-
-<!--
-            <h1 class="main-topic-h1">
-                <span class="label label-primary main-topic">{{TopicService.currentTopic.name}}
-                </span>
-                <button type="button" class="btn btn-lg btn-info back-button" aria-label="Left Align">
-                <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
-                </button>
-            </h1>
--->
             
             <!-- canvas to draw lines -->
             <div class="canvasContainer">

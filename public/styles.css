@@ -30,12 +30,10 @@ html, body, .ngview-window, .container {
     z-index: -1;
 }
 
-.main-topic-h1 {
-    margin: 0;
-}
-.main-topic {
-/*    width: 85%;*/
-/*    display: inline-block;*/
+.main-topic-header {
+    display: inline-block;
+    width: 70%;
+    margin-left: 12%;
 }
 
 .back-button {
@@ -44,11 +42,6 @@ html, body, .ngview-window, .container {
 
 .panel {
     margin: 0;
-}
-
-.panel-title {
-    display: inline-block;
-    width: 80%;
 }
 
 h1.panel-title {
