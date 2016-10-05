@@ -36,7 +36,25 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function($h
                 newList.push(children[i]);
             }
             self.topicList = newList;
-        })
+        });
+    }
+    
+    // for navigating up
+    this.navUp = function(topic) {
+        DrawingService.clearCanvas();
+        
+        $http.get("/api/topics/childrenbyid/" + topic.parent).then(function(response) {
+            var children = response.data;
+            var newList = [];
+            for(var i = 0; i < children.length; i++) {
+                newList.push(children[i]);
+            }
+            self.topicList = newList;
+        });
+        
+        $http.get("/api/topics/" + topic.parent).then(function(response) {
+            self.currentTopic = response.data;
+        });
     }
     
 }]);
