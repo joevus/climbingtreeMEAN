@@ -21,7 +21,9 @@ app.service("DrawingService", [function () {
             ctx.lineTo(x2, y2);
             ctx.lineTo(x3, y3);
             ctx.stroke();
-
+            
+            console.log("x1,x2,x3:" + x1 + ", " + x2 + ", " + x3);
+            console.log("y1,y2,y3:" + y1 + ", " + y2 + ", " + y3);
         }
 
 
@@ -60,6 +62,7 @@ app.service("DrawingService", [function () {
 
             var mainTopic = document.getElementsByClassName("main-topic");
             var mainTopicHeight = mainTopic[0].getBoundingClientRect().height;
+            console.log(mainTopicHeight);
             var buttonTop = element[0].getBoundingClientRect().top - mainTopicHeight;
             var buttonHeight = element[0].getBoundingClientRect().height;
 
