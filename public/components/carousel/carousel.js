@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("CarouselReources", ["$scope", function($scope) {
+app.controller("CarouselReourcesCtrl", ["$scope", function($scope) {
     
     $scope.myInterval = 5000;
   $scope.noWrapSlides = false;
@@ -8,10 +8,10 @@ app.controller("CarouselReources", ["$scope", function($scope) {
   var slides = $scope.slides = [];
   var currIndex = 0;
 
-  $scope.addSlide = function() {
+  $scope.addSlide = function(index) {
     var newWidth = 600 + slides.length + 1;
     slides.push({
-      image: '//unsplash.it/' + newWidth + '/300',
+      image: 'images/ianabby' + index + '.jpg',
       text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
       id: currIndex++
     });
@@ -22,8 +22,8 @@ app.controller("CarouselReources", ["$scope", function($scope) {
     assignNewIndexesToSlides(indexes);
   };
 
-  for (var i = 0; i < 4; i++) {
-    $scope.addSlide();
+  for (var i = 0; i < 5; i++) {
+    $scope.addSlide(i+1);
   }
 
   // Randomize logic below
@@ -58,4 +58,12 @@ app.controller("CarouselReources", ["$scope", function($scope) {
     return array;
   }
     
-}]);
+}])
+.directive("carouselResources", function() {
+    return {
+        restrict: 'AE',
+        templateUrl: "components/carousel/carousel.html",
+        replace: true,
+        controller: "CarouselReourcesCtrl"
+    }
+})
