@@ -2,7 +2,7 @@ var app = angular.module("TreeApp");
 
 app.controller("CarouselReourcesCtrl", ["$scope", function($scope) {
     
-    $scope.myInterval = 5000;
+    $scope.myInterval = 0;
   $scope.noWrapSlides = false;
   $scope.active = 0;
   var slides = $scope.slides = [];
@@ -12,7 +12,7 @@ app.controller("CarouselReourcesCtrl", ["$scope", function($scope) {
     var newWidth = 600 + slides.length + 1;
     slides.push({
       image: 'images/ianabby' + index + '.jpg',
-      text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+      text: ['Here Ian builds blocks while Abby lurks, approaching in her toddler fashion.','Awesome photograph','That is so cool','I love that'][slides.length % 4],
       id: currIndex++
     });
   };
