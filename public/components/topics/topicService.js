@@ -3,16 +3,20 @@ var app = angular.module("TreeApp");
 app.service("TopicService", ["$http", "$location", "DrawingService", function ($http, $location, DrawingService) {
     var self = this;
 
-    // set current topic
-    var regexp = /topics\/(.*)/;
-    var match = regexp.exec($location.path());
     this.currentTopic = {};
-    this.currentTopic.name = match[1];
-
+    
+    // set current topic
+    this.setCurrentTopic = function() {
+        var regexp = /topics\/(.*)/;
+        var match = regexp.exec($location.path());
+        self.currentTopic.name = match[1];
+    }
+    
     this.topicList = [];
 
     // for updating topics when first get to topics page
     this.beginTopics = function () {
+        
         $http.get("/api/topics/childrenbyname/" + self.currentTopic.name).then(function (response) {
             self.currentTopic = response.data;
             var children = response.data.children;
@@ -41,6 +45,9 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function ($
 
     // for navigating up
     this.navUp = function (topic) {
+        // clear topicList. Before adding this line, I would navigate up from Science to STEM then down to Technology and a line would remain drawn from the Science page.
+        self.topicList = [];
+        
         DrawingService.clearCanvas();
 
         // if reached the top of tree go to home (STEM) screen
