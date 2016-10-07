@@ -65,3 +65,13 @@ h6.panel-title {
 
 /* for UI Bootstrap, see angular-ui.github.io/bootstrap/ under "CSS"*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/* set image height in carousel */
+#slide-image {
+    height: 300px;
+}
+
+
+.slide-descrip {
+    margin: 5px 15px 10px 15px;
+}
