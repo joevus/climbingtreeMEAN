@@ -23,6 +23,18 @@ resourceRoutes.route("/")
         });
     });
 
+resourceRoutes.route("/bytopicid/:topicId")
+    .get(function (req, res) {
+        console.log("hello");
+        Resource.find({topic: req.params.topicId}, function (err, resources) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.send(resources)
+            }
+        })
+    });
+
 resourceRoutes.route("/:id")
     .get(function (req, res) {
         Resource.findById(req.params.id, function (err, resourceObj) {
