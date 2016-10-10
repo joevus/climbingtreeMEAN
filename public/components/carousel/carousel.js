@@ -4,17 +4,19 @@ app.controller("CarouselReourcesCtrl", ["$scope", "ResourceService", function ($
 
     $scope.ResourceService = ResourceService;
     
+    $scope.slides = $scope.ResourceService.resourceList;
+    
     $scope.myInterval = 0;
     $scope.noWrapSlides = false;
     $scope.active = 0;
-    var slides = $scope.slides = [];
+    //var slides = $scope.slides = [];
     var currIndex = 0;
 
-    $scope.addSlide = function (index) {
+    $scope.addSlide = function (resource) {
         var newWidth = 600 + slides.length + 1;
         slides.push({
-            image: 'images/ianabby' + index + '.jpg',
-            text: ['Here Ian builds blocks while Abby lurks, approaching in her toddler fashion.', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
+            image: resource.imgUrl,
+            text: resource.description,
             id: currIndex++
         });
     };
@@ -24,9 +26,9 @@ app.controller("CarouselReourcesCtrl", ["$scope", "ResourceService", function ($
         assignNewIndexesToSlides(indexes);
     };
 
-    for (var i = 0; i < 5; i++) {
-        $scope.addSlide(i + 1);
-    }
+//    for (var i = 0; i < 5; i++) {
+//        $scope.addSlide(i + 1);
+//    }
 
     // Randomize logic below
 

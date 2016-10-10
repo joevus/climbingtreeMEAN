@@ -1,10 +1,10 @@
 <div>
     <div style="height: 305px">
         <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-            <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-                <img id="slide-image" ng-src="{{slide.image}}" style="margin:auto;">
+            <div uib-slide ng-repeat="slide in slides track by $index" index="$index">
+                <img id="slide-image" ng-src="{{slide.imageUrl}}" style="margin:auto;">
                 <div class="carousel-caption">
-                    <p>{{slide.text}}</p>
+                    <p>{{slide.description}}</p>
                 </div>
             </div>
             <div class="slide-title container-fluid">
