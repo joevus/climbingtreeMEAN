@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.service("TopicService", ["$http", "$location", "DrawingService", function ($http, $location, DrawingService) {
+app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceService", function ($http, $location, DrawingService, ResourceService) {
     var self = this;
 
     this.currentTopic = {};
@@ -19,12 +19,15 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function ($
         
         $http.get("/api/topics/childrenbyname/" + self.currentTopic.name).then(function (response) {
             self.currentTopic = response.data;
+            
             var children = response.data.children;
             var newList = [];
             for (var i = 0; i < children.length; i++) {
                 newList.push(children[i]);
             }
             self.topicList = newList;
+            // find resources associated with current topic
+            ResourceService.getResources(self.currentTopic);
         });
     };
 
@@ -40,6 +43,9 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function ($
                 newList.push(children[i]);
             }
             self.topicList = newList;
+            
+            // find resources associated with current topic
+            ResourceService.getResources(self.currentTopic);
         });
     }
 
@@ -66,6 +72,9 @@ app.service("TopicService", ["$http", "$location", "DrawingService", function ($
 
             $http.get("/api/topics/" + topic.parent).then(function (response) {
                 self.currentTopic = response.data;
+                
+                // find resources associated with current topic
+                ResourceService.getResources(self.currentTopic);
             });
         }
 

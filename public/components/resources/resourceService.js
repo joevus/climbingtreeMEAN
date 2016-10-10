@@ -1,13 +1,16 @@
 var app = angular.module("TreeApp");
 
-app.service("ResourceService", ["$http", "$location", "TopicService", function ($http, $location, TopicService) {
+app.service("ResourceService", ["$http", "$location", function ($http, $location) {
     var self = this;
     
     this.resourceList = [];
 
-    this.getResources = function() {
-        $http.get("/api/resources/bytopicid/" + TopicService.currentTopic.id).then(function(response) {
+    this.getResources = function(topic) {
+        
+        $http.get("/api/resources/bytopicid/" + topic._id).then(function(response) {
             self.resourceList = response.data;
+            
+            console.log(self.resourceList);
         });
     };
 
