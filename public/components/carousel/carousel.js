@@ -4,8 +4,6 @@ app.controller("CarouselReourcesCtrl", ["$scope", "ResourceService", function ($
 
     $scope.ResourceService = ResourceService;
     
-    $scope.slides = $scope.ResourceService.resourceList;
-    
     $scope.myInterval = 0;
     $scope.noWrapSlides = false;
     $scope.active = 0;

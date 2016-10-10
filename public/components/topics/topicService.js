@@ -59,6 +59,8 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
         // if reached the top of tree go to home (STEM) screen
         if (topic.parent === "57f5493d014f140d5c4ffff6") {
             $location.path("/");
+            
+            // set the current topic
         } else {
             // otherwise, navigate up
             $http.get("/api/topics/childrenbyid/" + topic.parent).then(function (response) {
@@ -69,14 +71,14 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
                 }
                 self.topicList = newList;
             });
-
-            $http.get("/api/topics/" + topic.parent).then(function (response) {
-                self.currentTopic = response.data;
-                
-                // find resources associated with current topic
-                ResourceService.getResources(self.currentTopic);
-            });
         }
+        
+        // set current topic, get data for carousel
+        $http.get("/api/topics/" + topic.parent).then(function (response) {
+            self.currentTopic = response.data;
+            // find resources pertaining to current topic to populate carousel
+            ResourceService.getResources(self.currentTopic);
+        });
 
 
     }
