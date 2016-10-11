@@ -1,4 +1,4 @@
-var app = angular.module("TreeApp", ["ngRoute", "ui.bootstrap"]);
+var app = angular.module("TreeApp", ["ngRoute"]);
 
 app.config(["$routeProvider", function ($routeProvider) {
     $routeProvider

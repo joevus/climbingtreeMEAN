@@ -67,32 +67,34 @@ h6.panel-title {
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 /* set image height in carousel */
-#slide-image {
+#tile-image {
     height: 300px;
 }
 
-.slide-descrip {
+.tile-descrip {
     margin: 5px 15px 10px 15px;
 }
 
-.carousel-inner {
-    position: relative;
+.tile-container {
+    cursor: pointer;
 }
-.slide-title {
+
+.tile-title {
     position: absolute;
     top: 0; left:0; right:0;
     background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
     background: rgba(204, 204, 204, 0.65);
 }
 
-.slide-title span {
+.tile-title span {
     font-size: 18pt;
     font-weight: bold;
 }
 
-.slide-title button {
+.tile-title button {
     position:relative;
     margin-top: 5px;
 /*    position button above carousel "next" button */
     z-index: 1;
 }
+

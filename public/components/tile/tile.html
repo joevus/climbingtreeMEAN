@@ -1,0 +1,30 @@
+<div ng-repeat="tile in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6">
+    <img id="tile-image" ng-src="{{tile.imgUrl}}" style="margin:auto;" class="img-responsive">
+    <div class="carousel-caption">
+        <p>{{tile.description}}</p>
+    </div>
+
+    <div class="tile-title container-fluid">
+        <div class="row text-left">
+            <div class="col-xs-8 col-xs-offset-1">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <span>{{tile.name}}</span>
+                    </div>
+                    <div class="col-xs-12">
+                        <span><img src="images/rating/yellowStar.png" alt="" width=15></span>
+                        <span><img src="images/rating/yellowStar.png" alt="" width=15></span>
+                        <span><img src="images/rating/yellowStar.png" alt="" width=15></span>
+                        <span><img src="images/rating/yellowStar.png" alt="" width=15></span>
+                        <span><img src="images/rating/yellowStar.png" alt="" width=15></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <button type="button" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
