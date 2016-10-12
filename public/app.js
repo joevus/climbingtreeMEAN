@@ -10,4 +10,8 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "components/topics/topics.html",
             controller: "TopicsController"
         })
+        .when("/resource-page/:resourceId", {
+            templateUrl: "components/resources/resource-page.html",
+            controller: "ResourcePageCtrl"
+        })
 }]);
