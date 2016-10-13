@@ -2,7 +2,7 @@ var app = angular.module("TreeApp");
 
 //** Service Currently not in use **\\
 
-app.service("HomeService", ["$http", function($http){
+app.service("HomeService", ["$http", "TopicService", function($http, TopicService){
     var self = this;
     this.topicList = [];
     

@@ -12,7 +12,9 @@ app.controller("TopicsController", ["$scope", "TopicService", "DrawingService", 
     // make TopicService available on scope
     $scope.TopicService = TopicService;
     
-    // update topicList based on topic parent name
-    TopicService.beginTopics();
+    // test onclick
+    $scope.clicky = function(topic) {
+        $location.path("/topics/" + topic._id);
+    }
     
 }]);

@@ -76,6 +76,18 @@ topicRoutes.route("/childrenbyname/:parentName")
         });
     });
 
+topicRoutes.route("/topicbyname/:topicName")
+    .get(function(req, res) {
+        Topic
+        .findOne({ "name": req.params.topicName }, function(err, topic){
+            if(err){
+                res.status(500).send(err);
+            } else {
+                res.send(topic);
+            }
+        });
+    });
+
 topicRoutes.route("/childrenbyid/:parentId")
     .get(function(req, res) {
         Topic.find({ parent: req.params.parentId}, function(err, topics) {

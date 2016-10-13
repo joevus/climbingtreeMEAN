@@ -9,8 +9,6 @@ app.service("ResourceService", ["$http", "$location", function ($http, $location
         
         $http.get("/api/resources/bytopicid/" + topic._id).then(function(response) {
             self.resourceList = response.data;
-            
-            console.log(self.resourceList);
         });
     };
 

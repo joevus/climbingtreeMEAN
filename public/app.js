@@ -6,7 +6,7 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "components/home/home.html",
             controller: "HomeController"
         })
-        .when("/topics/:mainTopic", {
+        .when("/topics/:topicId", {
             templateUrl: "components/topics/topics.html",
             controller: "TopicsController"
         })
