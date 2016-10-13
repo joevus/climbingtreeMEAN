@@ -1,9 +1,9 @@
-<div ng-repeat="tile in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6">
+<div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6" ng-click="goToResourcePage(resource._id)">
     <!-- to make title-tile honor padding of tile-container -->
     <div class="padding-enforcer">
-        <img id="tile-image" ng-src="{{tile.imgUrl}}" style="margin:auto;" class="img-responsive">
+        <img id="tile-image" ng-src="{{resource.imgUrl}}" style="margin:auto;" class="img-responsive">
         <div class="carousel-caption">
-            <p>{{tile.description}}</p>
+            <p>{{resource.description}}</p>
         </div>
         <!--tile title -->
         <div class="col-xs-12 tile-title">
@@ -11,7 +11,7 @@
                 <div class="col-xs-8 col-xs-offset-1">
                     <div class="row">
                         <div class="col-xs-10">
-                            <span>{{tile.name}}</span>
+                            <span>{{resource.name}}</span>
                         </div>
                         <div class="col-xs-12">
                             <span><img src="images/rating/yellowStar.png" alt="" width=15></span>
