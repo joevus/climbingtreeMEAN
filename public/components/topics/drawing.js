@@ -7,8 +7,11 @@ app.service("DrawingService", [function () {
 
         this.clearCanvas = function () {
             var canvas = document.getElementById("topicCanvas");
-            var ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // if canvas is on page, then clear it.
+            if(canvas) {
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);    
+            }
         }
 
         this.drawLines = function (x1, x2, x3, y1, y2, y3) {

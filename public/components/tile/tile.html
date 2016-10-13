@@ -1,4 +1,4 @@
-<div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6" ng-click="goToResourcePage(resource._id)">
+<div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6" ng-click="goToResourcePage(resource)">
     <!-- to make title-tile honor padding of tile-container -->
     <div class="padding-enforcer">
         <img id="tile-image" ng-src="{{resource.imgUrl}}" style="margin:auto;" class="img-responsive">

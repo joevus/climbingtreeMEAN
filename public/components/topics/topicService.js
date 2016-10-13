@@ -3,11 +3,11 @@ var app = angular.module("TreeApp");
 app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceService", "$routeParams", function ($http, $location, DrawingService, ResourceService, $routeParams) {
     var self = this;
 
-    this.currentTopic = {};
+//    this.currentTopic = {};
     
     // set current topic using $routeParams
-    this.setCurrentTopic = function() {
-        $http.get("/api/topics/" + $routeParams.topicId).then(function(response) {
+    this.setCurrentTopic = function(topicId) {
+        $http.get("/api/topics/" + topicId).then(function(response) {
             self.currentTopic = response.data; 
             // find resources associated with current topic
             ResourceService.getResources(self.currentTopic);
