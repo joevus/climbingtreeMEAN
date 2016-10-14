@@ -3,7 +3,10 @@ var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
     body: String,
-    date: Date,
+    date: {
+        type: Date,
+        default: Date.now
+    },
     resourceId: {
         type: Schema.Types.ObjectId,
         ref: 'Resource'
