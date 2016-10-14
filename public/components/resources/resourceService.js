@@ -10,14 +10,6 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         
         $http.get("/api/resources/bytopicid/" + topic._id).then(function(response) {
             self.resourceList = response.data;
-            
-            // attach rating info to resource objects
-            for (var i = 0; i < self.resourcesList.length; i++) {
-                self.getRatings(self.resourcesList[i]).then(function(response) {
-                    var ratingObj = resonse.data;
-                    self.resourcesList[i].ratingObj = ratingObj;
-                });
-            }
         });
         
         
@@ -42,22 +34,22 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     
     // Ratings \\
     
-    this.getRatings = function(resource) {
-        return $http.get("/api/ratings/" + resource._id).then(function(response){
-            var ratings = response.data;
-            var ratingsNum = ratings.length;
-            var starsSum = 0;
-            for (var i = 0; i < ratingsNum; i++) {
-                var starsSum += ratings[0].stars;
-            }
-            var avgRating = starsSum / ratingsNum;
-            var ratingObj = {
-                numOfRatings: numOfRatings,
-                avgRating: avgRating
-            }
-            return ratingObj;
-        });
-    };
+//    this.getRatings = function(resource) {
+//        return $http.get("/api/ratings/" + resource._id).then(function(response){
+//            var ratings = response.data;
+//            var ratingsNum = ratings.length;
+//            var starsSum = 0;
+//            for (var i = 0; i < ratingsNum; i++) {
+//                var starsSum += ratings[0].stars;
+//            }
+//            var avgRating = starsSum / ratingsNum;
+//            var ratingObj = {
+//                numOfRatings: numOfRatings,
+//                avgRating: avgRating
+//            }
+//            return ratingObj;
+//        });
+//    };
     
     this.userRating = 0; // user's rating, 0 = user hasn't rated yet
     // set which star images to use based on user's rating
