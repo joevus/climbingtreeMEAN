@@ -24,4 +24,15 @@ ratingRoutes.route("/:resourceId")
         });
     });
 
+ratingRoutes.route("/")
+    .get(function (req, res) {
+        Rating.find({}, function(err, ratings) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                res.send(ratings);
+            }
+        });
+    });
+
 module.exports = ratingRoutes;

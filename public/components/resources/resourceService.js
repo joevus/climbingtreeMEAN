@@ -39,6 +39,8 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         for(var i = 0; i < 5; i++) {
             if(i < rating) {
                 self.starImg[i] = "yellowStar.png";
+            } else {
+                self.starImg[i] = "star.png"; // in case rating changes
             }
         }
     };
