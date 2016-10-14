@@ -46,6 +46,11 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     };
     
     this.rate = function(rating) {
+        // prevent user from rating more than once
+        if(self.userRating > 0) {
+            return;
+        }
+        
         var ratingObj = { stars: rating };
         $http.post("/api/ratings/" + $routeParams.resourceId, ratingObj).then(function(response) {
             self.userRating = response.data.stars;
