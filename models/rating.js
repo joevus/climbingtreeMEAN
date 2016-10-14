@@ -11,7 +11,10 @@ var RatingSchema = new Schema({
 //        type: Schema.Types.ObjectId,
 //        ref: 'User'
 //    },
-    date: Date
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model("Rating", RatingSchema);

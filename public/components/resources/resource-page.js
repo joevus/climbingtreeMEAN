@@ -11,6 +11,7 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
         ResourceService.getComments($scope.resource);
     });
     
+    // enables comments to show in ng-repeat
     $scope.ResourceService = ResourceService;
     
     $scope.TopicService = TopicService;
