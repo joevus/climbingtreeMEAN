@@ -1,6 +1,7 @@
 var express = require("express");
 var ratingRoutes = express.Router();
 var Rating = require("../models/rating");
+var Resource = require("../models/resource");
 
 ratingRoutes.route("/:resourceId")
     .get(function (req, res) {
@@ -19,7 +20,21 @@ ratingRoutes.route("/:resourceId")
             if(err) {
                 res.status(500).send(err);
             } else {
-                res.send(newRating);
+                // find relevant resource, save rating to it
+                Resource.findById(req.params.resourceId, function(err, resource) {
+                    if(err) {
+                        res.status(500).send(err);
+                    } else {
+                        resource.ratings.push(newRating._id);
+                        resource.save(function(err, savedResource) {
+                            if(err) {
+                                res.status(500).send(err);
+                            } else {
+                                res.send(newRating);
+                            }
+                        });
+                    }
+                });
             }
         });
     });

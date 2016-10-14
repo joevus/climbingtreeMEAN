@@ -13,7 +13,11 @@ var ResourceSchema = new Schema({
     topic: {
         type: Schema.Types.ObjectId,
         ref: 'topic'
-    }
+    },
+    ratings: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Rating'
+    }]
 });
 
 module.exports = mongoose.model("Resource", ResourceSchema);
