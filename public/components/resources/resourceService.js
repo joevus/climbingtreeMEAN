@@ -5,7 +5,6 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     
     this.resourceList = [];
     this.currentResource = {};
-    this.commentList = [];
 
     this.getResources = function(topic) {
         
@@ -20,10 +19,35 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         });
     };
     
+    // Comments \\
+    
+    this.commentList = [];
+    
     this.getComments = function(resource) {
         $http.get("/api/comments/" + self.currentResource._id).then(function(response) {
             var comments = response.data;
             self.commentList = comments;
+        });
+    };
+    
+    // Ratings \\
+    
+    this.userRating = 0; // user's rating, 0 = user hasn't rated yet
+    // set which star images to use based on user's rating
+    this.starImg = ["star.png", "star.png", "star.png", "star.png", "star.png"];
+    this.setStarImg = function(rating) {
+        for(var i = 0; i < 5; i++) {
+            if(i < rating) {
+                self.starImg[i] = "yellowStar.png";
+            }
+        }
+    };
+    
+    this.rate = function(rating) {
+        var ratingObj = { stars: rating };
+        $http.post("/api/ratings/" + $routeParams.resourceId, ratingObj).then(function(response) {
+            self.userRating = response.data.stars;
+            self.setStarImg(rating);
         });
     };
 
