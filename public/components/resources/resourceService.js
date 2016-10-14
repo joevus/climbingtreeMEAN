@@ -5,6 +5,7 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     
     this.resourceList = [];
     this.currentResource = {};
+    this.commentList = [];
 
     this.getResources = function(topic) {
         
@@ -16,6 +17,13 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     this.setCurrentResource = function() {
         return $http.get("/api/resources/" + $routeParams.resourceId).then(function(response) {
             return self.currentResource = response.data;
+        });
+    };
+    
+    this.getComments = function(resource) {
+        $http.get("/api/comments/" + self.currentResource._id).then(function(response) {
+            var comments = response.data;
+            self.commentList = comments;
         });
     };
 
