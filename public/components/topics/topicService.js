@@ -45,9 +45,6 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
                 newList.push(children[i]);
             }
             self.topicList = newList;
-            
-            // find resources associated with current topic
-            ResourceService.getResources(self.currentTopic);
         });
     };
 
