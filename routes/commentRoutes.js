@@ -35,4 +35,18 @@ commentRoutes.route("/")
         });
     });
 
+commentRoutes.route("/deletebyid/:commentId")
+    .delete(function(req, res) {
+        Comment.findByIdAndRemove(req.params.commentId, function(err, deletedComment) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                var obj = {};
+                obj.message = "comment successfully deleted.";
+                obj.deletedComment = deletedComment;
+                res.send(obj);
+            }
+        });
+    });
+
 module.exports = commentRoutes;
