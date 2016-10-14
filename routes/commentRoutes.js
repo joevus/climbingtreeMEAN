@@ -32,7 +32,7 @@ commentRoutes.route("/")
             } else {
                 res.send(comments);
             }
-        }
+        });
     });
 
 module.exports = commentRoutes;
