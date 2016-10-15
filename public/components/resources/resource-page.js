@@ -22,5 +22,5 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
     $scope.rate = function(rating) {
         ResourceService.rate(rating);
     };
-    $scope.starImg = ResourceService.starImg;
+    $scope.userStarImg = ResourceService.userStarImg;
 }]);

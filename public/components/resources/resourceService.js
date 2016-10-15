@@ -35,32 +35,31 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     
     // Ratings \\
     
-//    this.getRatings = function(resource) {
-//        return $http.get("/api/ratings/" + resource._id).then(function(response){
-//            var ratings = response.data;
-//            var ratingsNum = ratings.length;
-//            var starsSum = 0;
-//            for (var i = 0; i < ratingsNum; i++) {
-//                var starsSum += ratings[0].stars;
-//            }
-//            var avgRating = starsSum / ratingsNum;
-//            var ratingObj = {
-//                numOfRatings: numOfRatings,
-//                avgRating: avgRating
-//            }
-//            return ratingObj;
-//        });
-//    };
+    this.determineStar = function(resource, starNum) {
+        var ratings = resource.ratings;
+        var ratingSum = 0;
+        for (var i = 0; i < ratings.length; i++) {
+            ratingSum += ratings[i].stars;
+        }
+        var avgRating = ratingSum / ratings.length;
+        console.log(avgRating);
+        // if avg rating is 2.5 and we're on starNum 3, it will be yellow
+        if(avgRating >= starNum - 0.5) {
+            return "yellowStar.png";
+        } else {
+            return "star.png";
+        }
+    };
     
     this.userRating = 0; // user's rating, 0 = user hasn't rated yet
     // set which star images to use based on user's rating
-    this.starImg = ["star.png", "star.png", "star.png", "star.png", "star.png"];
-    this.setStarImg = function(rating) {
+    this.userStarImg = ["star.png", "star.png", "star.png", "star.png", "star.png"];
+    this.setUserStarImgs = function(rating) {
         for(var i = 0; i < 5; i++) {
             if(i < rating) {
-                self.starImg[i] = "yellowStar.png";
+                self.userStarImg[i] = "yellowStar.png";
             } else {
-                self.starImg[i] = "star.png"; // in case rating changes
+                self.userStarImg[i] = "star.png"; // in case rating changes
             }
         }
     };
@@ -75,7 +74,7 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         var ratingObj = { stars: rating };
         $http.post("/api/ratings/" + $routeParams.resourceId, ratingObj).then(function(response) {
             self.userRating = response.data.stars;
-            self.setStarImg(rating);
+            self.setUserStarImgs(rating);
         });
     };
 

@@ -7,6 +7,8 @@ app.controller("TileCtrl", ["$scope", "ResourceService", "$location", function (
         ResourceService.currentResource = resource;
         $location.path("/resource-page/" + resource._id);
     }
+    // function decides whether to return the star or yellowStar
+    $scope.determineStar = ResourceService.determineStar;
 }])
     .directive("tile", function () {
         return {
