@@ -39,13 +39,16 @@ resourceRoutes.route("/bytopicid/:topicId")
 
 resourceRoutes.route("/:id")
     .get(function (req, res) {
-        Resource.findById(req.params.id, function (err, resourceObj) {
+        Resource
+        .findById(req.params.id)
+        .populate('ratings')
+        .exec(function (err, resourceObj) {
             if (err) {
                 res.status(500).send(err);
             } else {
                 res.send(resourceObj);
             }
-        })
+        });
     })
     .put(function (req, res) {
         Resource.findByIdAndUpdate(req.params.id, req.body, function(err, updatedResource) {
@@ -68,7 +71,7 @@ resourceRoutes.route("/:id")
                 }
                 res.send(responseObj);
             }
-        })
+        });
     });
 
 module.exports = resourceRoutes;

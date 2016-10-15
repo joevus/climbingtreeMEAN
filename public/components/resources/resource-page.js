@@ -22,5 +22,11 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
     $scope.rate = function(rating) {
         ResourceService.rate(rating);
     };
+    
+    // SHOWING STARS
+    // for user
     $scope.userStarImg = ResourceService.userStarImg;
+    
+    // for resource overall
+    $scope.determineStar = ResourceService.determineStar;
 }]);
