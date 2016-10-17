@@ -36,6 +36,12 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     // Ratings \\
     
     this.determineStar = function(resource, starNum) {
+        
+        // make sure resource is truthy, if not exit function
+        if(!resource) {
+            return;
+        }
+        
         var ratings = resource.ratings;
         var ratingSum = 0;
         for (var i = 0; i < ratings.length; i++) {
