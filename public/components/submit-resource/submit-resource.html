@@ -12,13 +12,13 @@
             <form>
                 <div class="form-group">
                     <label for="linkToResource">Web address of resource</label>
-                    <input type="text" class="form-control" id="linkToResource" placeholder="Web address">
+                    <input type="text" class="form-control" id="linkToResource" placeholder="Web address" ng-model="recommendation.address">
                 </div>
                 <div class="form-group">
                     <label for="recommendation">Why you recommend this resource</label>
-                    <textarea class="form-control" id="recommendation" placeholder="Why you're recommending..."></textarea>
+                    <textarea class="form-control" id="recommendation" placeholder="Why you're recommending..." ng-model="recommendation.reason"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button class="btn btn-primary" ng-click="submitRecommendation(recommendation)">Submit</button>
             </form>
         </div>
     </div>
