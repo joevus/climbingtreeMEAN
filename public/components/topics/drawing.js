@@ -61,8 +61,8 @@ app.service("DrawingService", [function () {
             */
 
             var mainTopic = document.getElementsByClassName("main-topic");
-            var mainTopicHeight = mainTopic[0].getBoundingClientRect().height;
-            var buttonTop = element[0].getBoundingClientRect().top - mainTopicHeight;
+            var mainTopicBottom = mainTopic[0].getBoundingClientRect().bottom;
+            var buttonTop = element[0].getBoundingClientRect().top - mainTopicBottom;
             var buttonHeight = element[0].getBoundingClientRect().height;
 
             if (scope.$index <= 1) {
