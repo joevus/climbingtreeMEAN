@@ -114,6 +114,10 @@ h6.panel-title {
 .comment {
 }
 
+.rated-stars {
+    font-size: 18pt;
+}
+
 .num-ratings {
     font-size: 12pt;
     font-weight: normal;
