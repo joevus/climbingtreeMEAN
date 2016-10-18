@@ -13,7 +13,6 @@ app.controller("SubmitResourceCtrl", ["$scope", "SubmitService", "$timeout", fun
             // clear form
             $scope.recommendation = {};
             $scope.recentSubmission = true;
-            console.log("$scope.recentSubmission: " + $scope.recentSubmission);
             $timeout($scope.resetSubmission, 5000);
         });
     }
