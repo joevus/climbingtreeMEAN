@@ -9,4 +9,4 @@ var RecommendationSchema = new Schema({
     reason: String
 });
 
-module.exports = mongoose.model("Recommendation", recommendationSchema);
+module.exports = mongoose.model("Recommendation", RecommendationSchema);

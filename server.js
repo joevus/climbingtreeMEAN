@@ -17,6 +17,7 @@ app.use("/api/resources", require("./routes/resourceRoutes"));
 app.use("/api/topics", require("./routes/topicRoutes"));
 app.use("/api/ratings", require("./routes/ratingRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
+app.use("/api/recommendations", require("./routes/recommendationRoutes"));
 
 mongoose.connect("mongodb://localhost/climbingtree", function() {
     console.log("Database is connected");
