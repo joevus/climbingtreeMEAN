@@ -5,7 +5,7 @@ var jwt = require("jsonwebtoken");
 var config = require("../config");
 
 authRoutes.post("/login", function(req, res) {
-    // Try to find the user witht he submitted username
+    // Try to find the user with the submitted username
     User.findOne({username: req.body.username}, function(err, user) {
         if(err) res.status(500).send(err);
         
@@ -25,3 +25,19 @@ authRoutes.post("/login", function(req, res) {
         }
     });
 });
+
+authRoutes.post("/signup", function(req, res) {
+    User.find({username: req.body.username}, function(err, existingUser) {
+        if (err) res.status(500).send(err);
+        if (existingUser.length) res.send({success: false, message: "That username is already taken."});
+        else {
+            var newUser = new User(req.body);
+            newUser.save(function(err, user) {
+                if(err) res.status(500).send(err);
+                res.send({user: withoutPassword(), message: "Successfully created new user.", success: true});
+            });
+        }
+    });
+});
+
+module.exports = authRoutes;
