@@ -9,7 +9,7 @@ var expressJwt = require("express-jwt");
 
 var port = process.env.PORT || 8000;
 
-mongoose.connect("mongodb://localhost/climbingtree", function() {
+mongoose.connect(config.database, function() {
     console.log("Database is connected");
 });
 
