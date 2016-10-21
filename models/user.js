@@ -10,6 +10,7 @@ var userSchema = new Schema({
         unique: true,
         lowercase: true
     },
+    email: String,
     password: {
         type: String,
         require true
