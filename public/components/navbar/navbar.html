@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle btn-lg" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+                <a class="navbar-brand" href="#/">Climbing Tree</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/">Home</a></li>
+                    <li><a href="#/about">About</a></li>
+                    <li><a href="#/submit-resource">Submit Resource</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-hide="userService.isAuthenticated()" href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a ng-hide="userService.isAuthenticated()" href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a ng-show="userService.isAuthenticated()" href="#/logout"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
