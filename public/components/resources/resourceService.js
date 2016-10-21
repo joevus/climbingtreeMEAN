@@ -27,14 +27,16 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     this.commentList = [];
     
     this.getComments = function(resource) {
-        $http.get("/api/comments/" + self.currentResource._id).then(function(response) {
+        $http.get("/api/comments/" + resource._id).then(function(response) {
             var comments = response.data;
             self.commentList = comments;
         });
     };
     
     this.postComment = function(comment) {
-        return $http.post("/api/auth/comments/" + $routeParams.resourceId, comment);
+        return $http.post("/api/auth/comments/" + $routeParams.resourceId, comment).then(function(response) {
+            self.getComments(self.currentResource);
+        });
     }
     
     // Ratings \\
