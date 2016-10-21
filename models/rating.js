@@ -7,10 +7,10 @@ var RatingSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Resource'
     },
-//    userId: {
-//        type: Schema.Types.ObjectId,
-//        ref: 'User'
-//    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     date: {
         type: Date,
         default: Date.now

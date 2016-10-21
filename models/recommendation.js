@@ -6,7 +6,11 @@ var RecommendationSchema = new Schema({
         type: String,
         require: true
     },
-    reason: String
+    reason: String,
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 module.exports = mongoose.model("Recommendation", RecommendationSchema);
