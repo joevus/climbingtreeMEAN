@@ -11,8 +11,26 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
         ResourceService.getComments($scope.resource);
     });
     
+    // Comments \\
+    
     // enables comments to show in ng-repeat
     $scope.ResourceService = ResourceService;
+    
+    // for submission success message
+    $scope.recentComment = false;
+    $scope.resetRecentComment = function() {
+        recentComment = false;
+    }
+    
+    // post comment
+    $scope.postComment = function(comment) {
+        ResourceService.postComment(comment).then(function(response) {
+            // clear form
+            $scope.newComment = {};
+            $scope.recentComment = true;
+            $timeout($scope.resetRecentComment, 5000);
+        });
+    };
     
     $scope.TopicService = TopicService;
     

@@ -58,10 +58,13 @@
             <h3>Add a comment</h3>
             <form>
                 <div class="form-group">
-                    <textarea id="" placeholder="Let people know how you've used this resource or what you think of it." class="form-control"></textarea>
+                    <textarea ng-model="newComment.body" id="" placeholder="Let people know how you've used this resource or what you think of it." class="form-control"></textarea>
                 </div>
-                <button class="btn btn-primary">Submit Comment</button>
+                <button class="btn btn-primary" ng-click="postComment(newComment)">Submit Comment</button>
             </form>
+            <div ng-show="recentComment" class="alert alert-success" role="alert">
+                Thanks for your recommendation!
+            </div>
         </div>
     </div>
 </div>

@@ -33,6 +33,10 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         });
     };
     
+    this.postComment = function(comment) {
+        return $http.post("/api/auth/comments/", comment);
+    }
+    
     // Ratings \\
     
     this.determineStar = function(resource, starNum) {
