@@ -1,8 +1,8 @@
 var express = require("express");
-var commentRoutes = express.Router();
+var commentAuthRoutes = express.Router();
 var Comment = require("../models/comment");
 
-commentRoutes.route("/:resourceId")
+commentAuthRoutes.route("/:resourceId")
     .post(function(req, res) {
         var newComment = new Comment(req.body);
         newComment.resourceId = req.params.resourceId;
@@ -15,7 +15,7 @@ commentRoutes.route("/:resourceId")
         });
     });
 
-commentRoutes.route("/deletebyid/:commentId")
+commentAuthRoutes.route("/deletebyid/:commentId")
     .delete(function(req, res) {
         Comment.findByIdAndRemove(req.params.commentId, function(err, deletedComment) {
             if(err) {
@@ -29,4 +29,4 @@ commentRoutes.route("/deletebyid/:commentId")
         });
     });
 
-module.exports = commentRoutes;
+module.exports = commentAuthRoutes;

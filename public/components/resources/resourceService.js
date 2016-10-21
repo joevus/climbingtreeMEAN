@@ -34,7 +34,7 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     };
     
     this.postComment = function(comment) {
-        return $http.post("/api/auth/comments/", comment);
+        return $http.post("/api/auth/comments/" + $routeParams.resourceId, comment);
     }
     
     // Ratings \\
