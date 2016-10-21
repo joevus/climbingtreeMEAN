@@ -19,10 +19,12 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 // Routes \\
+app.use("/api/auth", expressJwt({secret: config.secret}));
 app.use("/api/resources", require("./routes/resourceRoutes"));
 app.use("/api/topics", require("./routes/topicRoutes"));
 app.use("/api/ratings", require("./routes/ratingRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
+app.use("/api/auth/comments", require("./routes/commentAuthRoutes"));
 app.use("/api/recommendations", require("./routes/recommendationRoutes"));
 
 // Have express serve up static files
