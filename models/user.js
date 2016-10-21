@@ -13,7 +13,7 @@ var userSchema = new Schema({
     email: String,
     password: {
         type: String,
-        require true
+        require: true
     },
     admin: {
         type: Boolean,

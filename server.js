@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 // Routes \\
+app.use("/auth", require("./routes/authRoutes.js"));
 app.use("/api/auth", expressJwt({secret: config.secret}));
 app.use("/api/resources", require("./routes/resourceRoutes"));
 app.use("/api/topics", require("./routes/topicRoutes"));

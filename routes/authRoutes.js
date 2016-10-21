@@ -34,7 +34,7 @@ authRoutes.post("/signup", function(req, res) {
             var newUser = new User(req.body);
             newUser.save(function(err, user) {
                 if(err) res.status(500).send(err);
-                res.send({user: withoutPassword(), message: "Successfully created new user.", success: true});
+                res.send({user: user.withoutPassword(), message: "Successfully created new user.", success: true});
             });
         }
     });
