@@ -11,7 +11,7 @@ app.config(["$routeProvider", function($routeProvider) {
             controller: "LoginController"
         })
         .when("/logout", {
-            controller: "LogoutContrller",
+            controller: "LogoutController",
             template: ""
         })
 }]);
