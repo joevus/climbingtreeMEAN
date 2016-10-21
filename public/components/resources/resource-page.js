@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService", function($scope, ResourceService, TopicService) {
+app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService", "$timeout", function($scope, ResourceService, TopicService, $timeout) {
     ResourceService.setCurrentResource().then(function(response) {
         $scope.resource = response;
         
@@ -19,7 +19,7 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
     // for submission success message
     $scope.recentComment = false;
     $scope.resetRecentComment = function() {
-        recentComment = false;
+        $scope.recentComment = false;
     }
     
     // post comment

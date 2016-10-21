@@ -60,11 +60,23 @@
                 <div class="form-group">
                     <textarea ng-model="newComment.body" id="" placeholder="Let people know how you've used this resource or what you think of it." class="form-control"></textarea>
                 </div>
-                <button class="btn btn-primary" ng-click="postComment(newComment)">Submit Comment</button>
+                <div class="form-inline">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <button class="btn btn-primary" ng-click="postComment(newComment)">Submit Comment</button>
+                        </div>
+                        <div class="col-xs-9">
+                            <div ng-show="recentComment" class="alert alert-success" role="alert">
+                                Thanks for your comment!
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
-            <div ng-show="recentComment" class="alert alert-success" role="alert">
-                Thanks for your recommendation!
-            </div>
         </div>
+        
+        <!-- some vertical white space-->
+        <div class="col-xs-12 breathing-room"></div>
+        
     </div>
 </div>
