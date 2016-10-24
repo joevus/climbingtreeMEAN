@@ -30,7 +30,6 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
         $http.get("/api/comments/" + resource._id).then(function(response) {
             var comments = response.data;
             self.commentList = comments;
-            console.log(response.data);
         });
     };
     
@@ -75,14 +74,17 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
     this.setUserRating = function(resource) {
         
         // exit function if user not logged in
-        if(!UserObjService.getUser()) return;
-        
+        if(!UserObjService.getUser()) {
+            console.log("user not logged in, exiting setUserRating");
+            return;
+        }
         var ratings = resource.ratings;
         for (var i = 0; i < ratings.length; i++) {
             if(ratings[i].userId === UserObjService.getUser()) {
                 self.userRating = ratings[i].stars;
             }
-        }  
+        }
+        self.setUserStarImgs(self.userRating);
     };
     
     // set which star images to use based on user's rating
@@ -100,14 +102,18 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
     this.rate = function(rating) {
         // prevent user from rating more than once
         // later will rely on database for this
-        if(self.userRating > 0) {
-            return;
-        }
+//        if(self.userRating > 0) {
+//            return;
+//        }
         
         var ratingObj = { stars: rating };
         $http.post("/api/auth/ratings/" + $routeParams.resourceId, ratingObj).then(function(response) {
             self.userRating = response.data.stars;
             self.setUserStarImgs(rating);
+        }, function(response) {
+            if(response.status === 403) {
+                console.log(response.data.message);
+            }
         });
     };
 
