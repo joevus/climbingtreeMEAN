@@ -7,6 +7,9 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
         // check if current topic is set, if not set it
         $scope.currentTopic = TopicService.currentTopic || TopicService.setCurrentTopic($scope.resource.topic);
         
+        // get user's rating
+        ResourceService.setUserRating($scope.resource);
+        
         // get comments
         ResourceService.getComments($scope.resource);
     });

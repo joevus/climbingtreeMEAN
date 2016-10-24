@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.service("ResourceService", ["$http", "$location", "$routeParams", function ($http, $location, $routeParams) {
+app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjService", function ($http, $location, $routeParams, UserObjService) {
     var self = this;
     
     this.resourceList = [];
@@ -71,6 +71,20 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
     };
     
     this.userRating = 0; // user's rating, 0 = user hasn't rated yet
+    
+    this.setUserRating = function(resource) {
+        
+        // exit function if user not logged in
+        if(!UserObjService.getUser()) return;
+        
+        var ratings = resource.ratings;
+        for (var i = 0; i < ratings.length; i++) {
+            if(ratings[i].userId === UserObjService.getUser()) {
+                self.userRating = ratings[i].stars;
+            }
+        }  
+    };
+    
     // set which star images to use based on user's rating
     this.userStarImg = ["star.png", "star.png", "star.png", "star.png", "star.png"];
     this.setUserStarImgs = function(rating) {
