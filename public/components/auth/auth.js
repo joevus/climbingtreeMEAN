@@ -32,7 +32,23 @@ app.service("TokenService", [function() {
     };
 }]);
 
-app.service("UserService", ["$http", "$location", "TokenService", function($http, $location, TokenService) {
+app.service("UserObjService", [function() {
+    var userObj = "user";
+    
+    this.setUser = function(obj) {
+        localStorage[userObj] = obj;
+    };
+    
+    this.getUser = function() {
+        return localStorage[userObj];
+    };
+    
+    this.removeUser = function() {
+        localStorage.removeItem(userObj);
+    };
+}]);
+
+app.service("UserService", ["$http", "$location", "TokenService", "UserObjService", function($http, $location, TokenService, UserObjService) {
     
     this.signup = function(user) {
         return $http.post("http://localhost:8000/auth/signup", user);
@@ -41,12 +57,15 @@ app.service("UserService", ["$http", "$location", "TokenService", function($http
     this.login = function(user) {
         return $http.post("http://localhost:8000/auth/login", user).then(function(response) {
             TokenService.setToken(response.data.token);
+            UserObjService.setUser(response.data.user);
+            console.log(response.data.user);
             return response;
         });
     };
     
     this.logout = function () {
         TokenService.removeToken();
+        UserObjService.removeUser();
         $location.path("/");
     };
     
