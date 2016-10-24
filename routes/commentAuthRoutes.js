@@ -6,6 +6,7 @@ commentAuthRoutes.route("/:resourceId")
     .post(function(req, res) {
         var newComment = new Comment(req.body);
         newComment.resourceId = req.params.resourceId;
+        newComment.userId = req.user._id;
         newComment.save(function(err, newComment) {
             if(err) {
                 res.status(500).send(err);

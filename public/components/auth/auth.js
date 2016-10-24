@@ -33,6 +33,7 @@ app.service("TokenService", [function() {
 }]);
 
 app.service("UserObjService", [function() {
+    // storing and getting user object to local storage
     var userObj = "user";
     
     this.setUser = function(obj) {
@@ -49,6 +50,7 @@ app.service("UserObjService", [function() {
 }]);
 
 app.service("UserService", ["$http", "$location", "TokenService", "UserObjService", function($http, $location, TokenService, UserObjService) {
+    // signing up, logging in and out
     
     this.signup = function(user) {
         return $http.post("http://localhost:8000/auth/signup", user);

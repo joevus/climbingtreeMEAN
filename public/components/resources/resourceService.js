@@ -30,6 +30,7 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         $http.get("/api/comments/" + resource._id).then(function(response) {
             var comments = response.data;
             self.commentList = comments;
+            console.log(response.data);
         });
     };
     
