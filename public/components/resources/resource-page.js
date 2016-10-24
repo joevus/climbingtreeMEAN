@@ -47,7 +47,8 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
     
     $scope.backLink = "#/topics/" + $scope.currentTopic;
     
-    // enable rating
+    // Ratings \\
+    // enable ratings
     $scope.rate = function(rating) {
         ResourceService.rate(rating);
     };

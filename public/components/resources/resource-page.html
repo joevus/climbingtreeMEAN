@@ -33,8 +33,13 @@
             <span><img ng-src="images/rating/{{userStarImg[4]}}" alt="" width=40 ng-click="rate(5)"></span>
             <h5>Rate it</h5>
         </div>
+        
         <!-- some vertical white space-->
-        <div class="col-xs-12 breathing-room"></div> 
+        <div class="col-xs-12 breathing-room">
+            <div ng-show="ResourceService.multipleRatingAttempt" class="alert alert-warning" role="alert">
+                You have already rated this resource and cannot rate more than once.
+            </div>
+        </div> 
         
         <div class="col-xs-12">
             <h3>Comments</h3>

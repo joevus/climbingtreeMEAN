@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjService", function ($http, $location, $routeParams, UserObjService) {
+app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjService", "$timeout", function ($http, $location, $routeParams, UserObjService, $timeout) {
     var self = this;
     
     this.resourceList = [];
@@ -87,6 +87,17 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
         self.setUserStarImgs(self.userRating);
     };
     
+    this.multipleRatingAttempt = false;
+    
+    this.multipleRatingReset = function() {
+        self.multipleRatingAttempt = false;
+    }
+    
+    this.multipleRatingAlert = function() {
+        self.multipleRatingAttempt = true;
+        $timeout(self.multipleRatingReset, 4000);
+    }
+    
     // set which star images to use based on user's rating
     this.userStarImg = ["star.png", "star.png", "star.png", "star.png", "star.png"];
     this.setUserStarImgs = function(rating) {
@@ -112,6 +123,8 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
             self.setUserStarImgs(rating);
         }, function(response) {
             if(response.status === 403) {
+                self.multipleRatingAlert();
+                console.log("multipleRatingAttempt: " + self.multipleRatingAttempt);
                 console.log(response.data.message);
             }
         });
