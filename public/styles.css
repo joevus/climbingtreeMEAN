@@ -118,6 +118,10 @@ h6.panel-title {
     margin-bottom: 15px;
 }
 
+.comment .comment-date {
+    font-size: 12pt;
+}
+
 .rated-stars {
     font-size: 18pt;
 }
