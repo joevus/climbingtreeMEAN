@@ -46,7 +46,7 @@
                 </div>
                 <div class="panel-body">
                     <p>{{comment.body}}</p>
-                    <button class="btn btn-danger btn-xs glyphicon glyphicon-trash pull-right"></button>
+                    <button ng-if = 'userId === comment.userId._id' class="btn btn-danger btn-xs glyphicon glyphicon-trash pull-right" ng-click="deleteComment(comment)"></button>
                 </div>
             </div>
         </div>

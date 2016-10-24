@@ -38,7 +38,13 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         return $http.post("/api/auth/comments/" + $routeParams.resourceId, comment).then(function(response) {
             self.getComments(self.currentResource);
         });
-    }
+    };
+    
+    this.deleteComment = function(comment) {
+        return $http.delete("/api/auth/comments/deletebyid/" + comment._id).then(function(response) {
+            self.getComments(self.currentResource);
+        });
+    };
     
     // Ratings \\
     

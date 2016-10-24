@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService", "$timeout", function($scope, ResourceService, TopicService, $timeout) {
+app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService", "$timeout", "UserObjService", function($scope, ResourceService, TopicService, $timeout, UserObjService) {
     ResourceService.setCurrentResource().then(function(response) {
         $scope.resource = response;
         
@@ -10,6 +10,9 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
         // get comments
         ResourceService.getComments($scope.resource);
     });
+    
+    // For user-owned things
+    $scope.userId = UserObjService.getUser();
     
     // Comments \\
     
@@ -30,6 +33,11 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
             $scope.recentComment = true;
             $timeout($scope.resetRecentComment, 5000);
         });
+    };
+    
+    // delete comment
+    $scope.deleteComment = function(comment) {
+        ResourceService.deleteComment(comment);
     };
     
     $scope.TopicService = TopicService;

@@ -59,8 +59,7 @@ app.service("UserService", ["$http", "$location", "TokenService", "UserObjServic
     this.login = function(user) {
         return $http.post("http://localhost:8000/auth/login", user).then(function(response) {
             TokenService.setToken(response.data.token);
-            UserObjService.setUser(response.data.user);
-            console.log(response.data.user);
+            UserObjService.setUser(response.data.user._id);
             return response;
         });
     };
