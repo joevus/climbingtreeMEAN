@@ -91,7 +91,7 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", function (
         }
         
         var ratingObj = { stars: rating };
-        $http.post("/api/ratings/" + $routeParams.resourceId, ratingObj).then(function(response) {
+        $http.post("/api/auth/ratings/" + $routeParams.resourceId, ratingObj).then(function(response) {
             self.userRating = response.data.stars;
             self.setUserStarImgs(rating);
         });

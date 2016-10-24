@@ -24,6 +24,7 @@ app.use("/api/auth", expressJwt({secret: config.secret}));
 app.use("/api/resources", require("./routes/resourceRoutes"));
 app.use("/api/topics", require("./routes/topicRoutes"));
 app.use("/api/ratings", require("./routes/ratingRoutes"));
+app.use("/api/auth/ratings", require("./routes/ratingAuthRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
 app.use("/api/auth/comments", require("./routes/commentAuthRoutes"));
 app.use("/api/recommendations", require("./routes/recommendationRoutes"));
