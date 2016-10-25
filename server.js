@@ -22,6 +22,7 @@ app.use(morgan("dev"));
 app.use("/auth", require("./routes/authRoutes.js"));
 app.use("/api/auth", expressJwt({secret: config.secret}));
 app.use("/api/resources", require("./routes/resourceRoutes"));
+app.use("/api/auth/resources", require("./routes/resourceAuthRoutes"));
 app.use("/api/topics", require("./routes/topicRoutes"));
 app.use("/api/ratings", require("./routes/ratingRoutes"));
 app.use("/api/auth/ratings", require("./routes/ratingAuthRoutes"));
