@@ -16,16 +16,6 @@ topicRoutes.route("/")
             }
         });
 
-    })
-    .post(function(req, res){
-        var newTopic = new Topic(req.body);
-        newTopic.save(function(err, newTopic) {
-            if(err) {
-                res.status(500).send(err);
-            } else {
-                res.send(newTopic);
-            }
-        });
     });
 
 topicRoutes.route("/:id")
@@ -35,29 +25,6 @@ topicRoutes.route("/:id")
                 res.status(500).send(err);
             } else {
                 res.send(topicObj)
-            }
-        });
-    })
-    .put(function (req, res) {
-        Topic.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTopic) {
-            if(err) {
-                res.status(500).send(err);
-            } else {
-                res.send(updatedTopic);
-            }
-        })
-    })
-    .delete(function(req, res) {
-        Topic.findByIdAndRemove(req.params.id, function(err, deletedTopic) {
-            if(err) {
-                res.status(500).send(err);
-            } else {
-                var responseObj = {
-                    success: true,
-                    message: "succesfully deleted topic",
-                    topic: deletedTopic
-                }
-                res.send(responseObj);
             }
         });
     });
