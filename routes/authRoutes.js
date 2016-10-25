@@ -32,6 +32,8 @@ authRoutes.post("/signup", function(req, res) {
         if (existingUser.length) res.send({success: false, message: "That username is already taken."});
         else {
             var newUser = new User(req.body);
+            // in case someone tried to submit themselves as admin
+            newUser.admin = false;
             newUser.save(function(err, user) {
                 if(err) res.status(500).send(err);
                 res.send({user: user.withoutPassword(), message: "Successfully created new user.", success: true});
