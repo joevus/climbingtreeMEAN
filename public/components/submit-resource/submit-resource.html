@@ -25,6 +25,10 @@
                     <div ng-show="recentSubmission" class="alert alert-success" role="alert">
                         Thanks for your recommendation!
                     </div>
+                    <div ng-show="!UserService.isAuthenticated()" class="alert alert-warning" role="alert">
+                        You need to log in to submit a recommendation.
+                    </div>
+            <!--ng-show="!UserService.isAuthenticated()"-->
                 </div>
             </div>
         </div>

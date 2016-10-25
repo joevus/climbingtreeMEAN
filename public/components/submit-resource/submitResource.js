@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("SubmitResourceCtrl", ["$scope", "SubmitService", "$timeout", function ($scope, SubmitService, $timeout) {
+app.controller("SubmitResourceCtrl", ["$scope", "SubmitService", "$timeout", "UserService", function ($scope, SubmitService, $timeout, UserService) {
     
     // for submission success message
     $scope.recentSubmission = false;
@@ -16,5 +16,7 @@ app.controller("SubmitResourceCtrl", ["$scope", "SubmitService", "$timeout", fun
             $timeout($scope.resetSubmission, 5000);
         });
     }
+    
+    $scope.UserService = UserService;
 
 }]);
