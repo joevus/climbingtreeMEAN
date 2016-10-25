@@ -38,11 +38,50 @@ topicAuthRoutes.route("/:id")
     .put(function (req, res) {
         // if admin, update topic
         if(req.user.admin === true) {
-            Topic.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTopic) {
+            Topic.findByIdAndUpdate(req.params.id, req.body, {new: false}, function(err, oldTopic) {
                 if(err) {
                     res.status(500).send(err);
                 } else {
-                    res.send(updatedTopic);
+                    // convert both ids to strings
+                    var oldParentId = "" + oldTopic.parent;
+                    var newParentId = "" + req.body.parent;
+                    // if parent changed, update children property of parents
+                    if(newParentId !== oldParentId) {
+                        // push topic id to children of new parent
+                        Topic.findById(req.body.parent, function(err, newParent) {
+                            if(err) {
+                                res.status(500).send(err);
+                            } else {
+                                newParent.children.push(req.body._id);
+                                newParent.save(function(err, newParent) {
+                                    if(err) {
+                                        res.status(500).send(err);
+                                    } else {
+                                        // delete topic id from children of old parent
+                                        Topic.findById(oldTopic.parent, function(err, oldParent) {
+                                            if(err) {
+                                                res.status(500).send(err);
+                                            } else {
+                                                var index = oldParent.children.indexOf(oldTopic._id);
+                                                oldParent.children.splice(index, 1);
+                                                oldParent.save(function(err, oldParent) {
+                                                   if(err) {
+                                                       res.status(500).send(err);
+                                                   } else {
+                                                       console.log("why are you here?");
+                                                       res.send({success: true, oldTopic: oldTopic, message: "updated topic, updated new parent and old parent"});
+                                                   }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        // if parent did not change, send away
+                        res.send({success: true, oldTopic: oldTopic, message: "updated topic"});    
+                    }
                 }
             });
         } else {
