@@ -4,6 +4,6 @@ app.service("SubmitService", ["$http", function($http) {
     var self = this;
     
     this.submitRecommendation = function(recommendation) {
-        return $http.post("/api/recommendations", recommendation);
+        return $http.post("/api/auth/recommendations", recommendation);
     };
 }]);

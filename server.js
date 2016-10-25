@@ -28,6 +28,7 @@ app.use("/api/auth/ratings", require("./routes/ratingAuthRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
 app.use("/api/auth/comments", require("./routes/commentAuthRoutes"));
 app.use("/api/recommendations", require("./routes/recommendationRoutes"));
+app.use("/api/auth/recommendations", require("./routes/recommendationAuthRoutes"));
 
 // Have express serve up static files
 app.use(express.static(path.join(__dirname, "public")));
