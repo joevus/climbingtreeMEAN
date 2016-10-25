@@ -7,11 +7,25 @@ topicAuthRoutes.route("/")
         // if admin, make new topic
         if(req.user.admin === true) {
             var newTopic = new Topic(req.body);
-            newTopic.save(function(err, newTopic) {
+            // enter new topic as a child in parent
+            Topic.findById(newTopic.parent, function(err, parentTopic) {
                 if(err) {
                     res.status(500).send(err);
                 } else {
-                    res.send(newTopic);
+                    parentTopic.children.push(newTopic._id);
+                    parentTopic.save(function(err, parentTopic) {
+                        if(err) {
+                            res.status(500).send(err);
+                        } else {
+                            newTopic.save(function(err, newTopic) {
+                                if(err) {
+                                    res.status(500).send(err);
+                                } else {
+                                    res.send(newTopic);
+                                }
+                            });
+                        }
+                    });
                 }
             });
         } else {
