@@ -18,7 +18,7 @@
                     <label for="recommendation">Why you recommend this resource</label>
                     <textarea class="form-control" id="recommendation" placeholder="Why you're recommending..." ng-model="recommendation.reason"></textarea>
                 </div>
-                <button class="btn btn-primary" ng-click="submitRecommendation(recommendation)">Submit</button>
+                <button class="btn btn-primary" ng-click="submitRecommendation(recommendation)" ng-disabled="!UserService.isAuthenticated()">Submit</button>
             </form>
             <div class="row">
                 <div class="col-xs-12">
