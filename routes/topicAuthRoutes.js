@@ -97,12 +97,22 @@ topicAuthRoutes.route("/:id")
                 if(err) {
                     res.status(500).send(err);
                 } else {
-                    var responseObj = {
-                        success: true,
-                        message: "succesfully deleted topic",
-                        topic: deletedTopic
-                    }
-                    res.send(responseObj);
+                    // find parent of deleted topic
+                    deletedTopic.findParentRef(function(err, parentTopic) {
+                        // remove reference to deleted child in parentTopic
+                        parentTopic.removeFromChildrenById(deletedTopic._id, function(err, parentTopic) {
+                            if (err) {
+                                res.status(500).send(err);
+                            } else {
+                                var responseObj = {
+                                    success: true,
+                                    message: "Successfully deleted topic and removed reference to it in parent topic.",
+                                    topic: deletedTopic
+                                }
+                                res.send(responseObj);
+                            }
+                        });
+                    });
                 }
             });
         } else {
