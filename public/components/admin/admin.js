@@ -1,5 +1,9 @@
-var app = angular.module("TreeApp");
+var app = angular.module("TreeApp.Admin", []);
 
-app.controller("AdminController", ["$scope", function($scope) {
-    
-}]);
+app.config(["$routeProvider", function($routeProvider) {
+    $routeProvider
+        .when("/post-resource", {
+            templateUrl: "components/admin/post-resource/post-resource.html",
+            controller: "PostResourceCtrl"
+        })
+}])

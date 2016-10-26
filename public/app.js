@@ -1,4 +1,4 @@
-var app = angular.module("TreeApp", ["ngRoute", "TreeApp.Auth"]);
+var app = angular.module("TreeApp", ["ngRoute", "TreeApp.Auth", "TreeApp.Admin"]);
 
 app.config(["$routeProvider", function ($routeProvider) {
     $routeProvider
