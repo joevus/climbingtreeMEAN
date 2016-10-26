@@ -18,21 +18,21 @@
                 </div>
                 <div ng-if="topicType === 'new'" class="form-group">
                     <label for="topic-name">Topic Name</label>
-                    <input type="text" class="form-control" id="topic-name" placeholder="name the topic" ng-model="newTopic.name">
+                    <input type="text" class="form-control" id="topic-name" placeholder="name the topic" ng-model="resourceTopic.name">
                 </div>
                 <div ng-if="topicType === 'new'" class="form-group">
                     <label for="topic-parent">Topic's Parent</label>
-                    <select name="topicParent" id="topic-parent" ng-model="newTopic.parent">
+                    <select name="topicParent" id="topic-parent" ng-model="resourceTopic.parent">
                         <option value="topic-id">existing topic</option>
                     </select>
                 </div>
                 <div ng-if="topicType === 'existing'" class="form-group">
                     <label for="existing-topic">Pick an existing topic</label>
-                    <select name="topicParent" id="topic-parent" ng-model="newTopic">
+                    <select name="topicParent" id="topic-parent" ng-model="resourceTopic">
                         <option value="topic-id">existing topic</option>
                     </select>
                 </div>
-                <button class="btn btn-primary" ng-click="submitRecommendation(recommendation)" ng-disabled="">Submit</button>
+                <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, topicType)" ng-disabled="">Submit</button>
             </form>
         </div>
         <div class="col-xs-12 col-md-7 col-md-pull-5">
