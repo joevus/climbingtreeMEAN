@@ -3,12 +3,16 @@
         <div class="col-xs-12 col-md-5 col-md-push-7">
             <form>
                 <div class="form-group">
+                    <label for="resource-name">Resource Name</label>
+                    <input type="text" class="form-control" id="resource-name" placeholder="url" ng-model="newResource.name">
+                </div>
+                <div class="form-group">
                     <label for="linkToResource">Resource Url</label>
                     <input type="text" class="form-control" id="linkToResource" placeholder="url" ng-model="newResource.url">
                 </div>
                 <div class="form-group">
-                    <label for="recommendation">Description</label>
-                    <textarea class="form-control" id="recommendation" placeholder="Description to show on climbing tree" ng-model="newResource.description"></textarea>
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" placeholder="Description to show on climbing tree" ng-model="newResource.description"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="existing-topic">Use existing topic</label>
@@ -32,7 +36,7 @@
                         <option value="topic-id">existing topic</option>
                     </select>
                 </div>
-                <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, topicType)" ng-disabled="">Submit</button>
+                <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, topicType)" ng-disabled=" !resourceTopic.name || !newResource.name || !newResource.description || !newResource.url">Submit</button>
             </form>
         </div>
         <div class="col-xs-12 col-md-7 col-md-pull-5">
