@@ -11,6 +11,7 @@
                     <li class="active"><a href="#/">Home</a></li>
                     <li><a href="#/about">About</a></li>
                     <li><a href="#/submit-resource">Submit Resource</a></li>
+                    <li><a ng-show="userService.isAdmin()" href="#/admin">Admin</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a ng-hide="userService.isAuthenticated()" href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

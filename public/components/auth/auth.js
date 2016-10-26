@@ -30,6 +30,20 @@ app.service("TokenService", [function() {
     this.removeToken = function() {
         localStorage.removeItem(userToken);
     };
+    
+    this.setAdmin = function() {
+        localStorage["admin"] = "on";
+    };
+    
+    this.getAdmin = function(){
+        return localStorage["admin"];
+    };
+    
+    this.removeAdmin = function() {
+        localStorage.removeItem("admin");
+    };
+    
+    
 }]);
 
 app.service("UserObjService", [function() {
@@ -60,6 +74,7 @@ app.service("UserService", ["$http", "$location", "TokenService", "UserObjServic
         return $http.post("http://localhost:8000/auth/login", user).then(function(response) {
             TokenService.setToken(response.data.token);
             UserObjService.setUser(response.data.user._id);
+            if(response.data.user.admin) TokenService.setAdmin();
             return response;
         });
     };
@@ -67,12 +82,18 @@ app.service("UserService", ["$http", "$location", "TokenService", "UserObjServic
     this.logout = function () {
         TokenService.removeToken();
         UserObjService.removeUser();
+        TokenService.removeAdmin();
         $location.path("/");
     };
     
     this.isAuthenticated = function() {
         return !!TokenService.getToken();
     };
+    
+    this.isAdmin = function() {
+        return !!TokenService.getAdmin();
+    };
+    
 }]);
 
 app.factory("AuthInterceptor", ["$q", "$location", "TokenService", function($q, $location, TokenService) {
