@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-5 col-md-push-7">
+            <form>
+                <div class="form-group">
+                    <label for="linkToResource">Resource Url</label>
+                    <input type="text" class="form-control" id="linkToResource" placeholder="url" ng-model="newResource.url">
+                </div>
+                <div class="form-group">
+                    <label for="recommendation">Description</label>
+                    <textarea class="form-control" id="recommendation" placeholder="Description to show on climbing tree" ng-model="newResource.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="existing-topic">Use existing topic</label>
+                    <input type="radio" ng-model="topicType" value="existing" checked>
+                    <label for="new-topic">Create new topic</label>
+                    <input type="radio" ng-model="topicType" value="new">
+                </div>
+                <div ng-if="topicType === 'new'" class="form-group">
+                    <label for="topic-name">Topic Name</label>
+                    <input type="text" class="form-control" id="topic-name" placeholder="name the topic" ng-model="newTopic.name">
+                </div>
+                <div ng-if="topicType === 'new'" class="form-group">
+                    <label for="topic-parent">Topic's Parent</label>
+                    <select name="topicParent" id="topic-parent" ng-model="newTopic.parent">
+                        <option value="topic-id">existing topic</option>
+                    </select>
+                </div>
+                <div ng-if="topicType === 'existing'" class="form-group">
+                    <label for="existing-topic">Pick an existing topic</label>
+                    <select name="topicParent" id="topic-parent" ng-model="newTopic">
+                        <option value="topic-id">existing topic</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" ng-click="submitRecommendation(recommendation)" ng-disabled="">Submit</button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-7 col-md-pull-5">
+            <div class="row">
+                <div class="col-xs-12" ng-repeat="rec in recommendations">
+                    <h3><a ng-href={{rec.address}}>{{rec.address}}</a></h3>
+                    <p>{{rec.reason}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

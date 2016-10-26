@@ -6,4 +6,9 @@ app.service("SubmitService", ["$http", function($http) {
     this.submitRecommendation = function(recommendation) {
         return $http.post("/api/auth/recommendations", recommendation);
     };
+    
+    this.getRecommendations = function() {
+        return $http.get("/api/recommendations");
+    };
+    
 }]);

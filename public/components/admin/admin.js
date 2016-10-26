@@ -6,4 +6,4 @@ app.config(["$routeProvider", function($routeProvider) {
             templateUrl: "components/admin/post-resource/post-resource.html",
             controller: "PostResourceCtrl"
         })
-}])
+}]);
