@@ -4,7 +4,8 @@ var Recommendation = require('../models/recommendation');
 
 recommendationAuthRoutes.route("/")
     .post(function(req, res) {
-        var newRecommendation = new Recommendation(req.body);    
+        var newRecommendation = new Recommendation(req.body);
+        newRecommendation.userId = req.user._id;
         newRecommendation.save(function(err, newRecommendation) {
             if(err) {
                 res.status(500).send(err);

@@ -7,6 +7,10 @@ var RecommendationSchema = new Schema({
         require: true
     },
     reason: String,
+    date: {
+        type: Date,
+        default: Date.now
+    },
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
