@@ -15,4 +15,20 @@ recommendationAuthRoutes.route("/")
         });
     });
 
+recommendationAuthRoutes.route("/:id")
+    .delete(function(req, res) {
+        Recommendation.findByIdAndRemove(req.params.id, function(err, deletedRec) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                var messageObj = {
+                    success: true,
+                    message: "deleted recommendation",
+                    deletedRecommendation: deletedRec
+                }
+                res.send(messageObj);
+            }
+        });
+    });
+
 module.exports = recommendationAuthRoutes;
