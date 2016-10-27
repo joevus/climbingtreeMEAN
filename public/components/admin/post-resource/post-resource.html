@@ -27,13 +27,13 @@
                 <div ng-if="topicType === 'new'" class="form-group">
                     <label for="topic-parent">Topic's Parent</label>
                     <select name="topicParent" id="topic-parent" ng-model="resourceTopic.parent">
-                        <option value="topic-id">existing topic</option>
+                        <option ng-repeat="topic in allTopics" ng-value="topic._id">{{topic.name}}</option>
                     </select>
                 </div>
                 <div ng-if="topicType === 'existing'" class="form-group">
                     <label for="existing-topic">Pick an existing topic</label>
-                    <select name="topicParent" id="topic-parent" ng-model="resourceTopic">
-                        <option value="topic-id">existing topic</option>
+                    <select name="topicParent" id="existing-topic" ng-model="resourceTopic">
+                        <option ng-repeat="topic in allTopics" ng-value="topic._id">{{topic.name}}</option>
                     </select>
                 </div>
                 <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, topicType)" ng-disabled=" !resourceTopic.name || !newResource.name || !newResource.description || !newResource.url">Submit</button>

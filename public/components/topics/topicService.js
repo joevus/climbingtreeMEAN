@@ -67,5 +67,10 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
         }
         
     };
+    
+    // for admin managing topics
+    this.getAllTopics = function() {
+        return $http.get("/api/topics/");
+    }
 
 }]);
