@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", function($scope, SubmitService, TopicService) {
+app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "ResourceService", function($scope, SubmitService, TopicService, ResourceService) {
     SubmitService.getRecommendations().then(function(response){
        $scope.recommendations = response.data; 
     });
@@ -18,4 +18,25 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", f
     
     // new topic
     $scope.newTopic = {};
+    
+    $scope.postResource = function(resource, existingTopic, newTopic, topicType) {
+        // using existing topic
+        if (topicType === 'existing') {
+            resource.topic = existingTopic._id;
+            ResourceService.postResource(resource).then(function(response) {
+               console.log(response.data);
+            });
+        // using new topic
+        } else if(topicType === 'new') {
+            // post topic first
+            TopicService.postTopic(newTopic).then(function(response) {
+                var newTopicId = response.data._id;
+                resource.topic = newTopicId;
+                ResourceService.postResource(resource).then(function(response) {
+                    console.log(response.data);
+                });
+            });
+            
+        }
+    };
 }]);

@@ -13,7 +13,11 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
             console.log(response.data);
         });
         
-        
+    };
+    
+    // Admin \\
+    this.postResource = function(resource) {
+        return $http.post("/api/auth/resources/", resource);
     };
     
     this.setCurrentResource = function() {

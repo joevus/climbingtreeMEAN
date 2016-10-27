@@ -68,9 +68,13 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
         
     };
     
-    // for admin managing topics
+    // Admin \\
     this.getAllTopics = function() {
         return $http.get("/api/topics/");
-    }
+    };
+    
+    this.postTopic = function(topic) {
+        return $http.post("/api/auth/topics/", topic);
+    };
 
 }]);
