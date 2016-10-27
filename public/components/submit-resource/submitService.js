@@ -11,4 +11,8 @@ app.service("SubmitService", ["$http", function($http) {
         return $http.get("/api/recommendations");
     };
     
+    this.deleteRecommendation = function(recommendation) {
+        return $http.delete("/api/auth/recommendations/" + recommendation._id);
+    };
+    
 }]);

@@ -39,4 +39,16 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
             
         }
     };
+    
+    // delete recommendation (with trash can icon)
+    $scope.deleteRecommendation = function(rec) {
+        SubmitService.deleteRecommendation(rec).then(function(response) {
+            console.log(response.data);
+            // refresh recommendations
+            SubmitService.getRecommendations().then(function(response){
+               $scope.recommendations = response.data; 
+            });
+        });  
+    };
+    
 }]);
