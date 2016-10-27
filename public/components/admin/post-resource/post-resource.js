@@ -12,4 +12,10 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", f
     TopicService.getAllTopics().then(function(response) {
        $scope.allTopics = response.data; 
     });
+    
+    // ng-model for resourceTopic wasn't working until I included this
+    $scope.resourceTopic = {};
+    
+    // new topic
+    $scope.newTopic = {};
 }]);

@@ -16,27 +16,27 @@
                 </div>
                 <div class="form-group">
                     <label for="existing-topic">Use existing topic</label>
-                    <input type="radio" ng-model="topicType" value="existing" checked>
+                    <input type="radio" ng-model="topicType" value="existing" checked ng-click="newTopic = {}">
                     <label for="new-topic">Create new topic</label>
-                    <input type="radio" ng-model="topicType" value="new">
+                    <input type="radio" ng-model="topicType" value="new" ng-click="resourceTopic = {}">
                 </div>
                 <div ng-if="topicType === 'new'" class="form-group">
                     <label for="topic-name">Topic Name</label>
-                    <input type="text" class="form-control" id="topic-name" placeholder="name the topic" ng-model="resourceTopic.name">
+                    <input type="text" class="form-control" id="topic-name" placeholder="name the topic" ng-model="newTopic.name">
                 </div>
                 <div ng-if="topicType === 'new'" class="form-group">
                     <label for="topic-parent">Topic's Parent</label>
-                    <select name="topicParent" id="topic-parent" ng-model="resourceTopic.parent">
+                    <select name="topicParent" id="topic-parent" ng-model="newTopic.parent">
                         <option ng-repeat="topic in allTopics" ng-value="topic._id">{{topic.name}}</option>
                     </select>
                 </div>
                 <div ng-if="topicType === 'existing'" class="form-group">
                     <label for="existing-topic">Pick an existing topic</label>
-                    <select name="topicParent" id="existing-topic" ng-model="resourceTopic">
+                    <select name="existing-topic" id="existing-topic" ng-model="resourceTopic._id">
                         <option ng-repeat="topic in allTopics" ng-value="topic._id">{{topic.name}}</option>
                     </select>
                 </div>
-                <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, topicType)" ng-disabled=" !resourceTopic.name || !newResource.name || !newResource.description || !newResource.url">Submit</button>
+                <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, topicType)" ng-disabled=" (!resourceTopic._id && (!newTopic.name || !newTopic.parent) ) || !newResource.name  || !newResource.description || !newResource.url">Submit</button>
             </form>
         </div>
         <div class="col-xs-12 col-md-7 col-md-pull-5">
