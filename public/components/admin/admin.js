@@ -10,4 +10,8 @@ app.config(["$routeProvider", function($routeProvider) {
             templateUrl: "components/admin/manage-topics/manage-topics.html",
             controller: "ManageTopicsCtrl"
         })
+        .when("/manage-resources", {
+            templateUrl: "components/admin/manage-resources/manage-resources.html",
+            controller: "ManageResourcesCtrl"
+        })
 }]);
