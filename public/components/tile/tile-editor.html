@@ -1,0 +1,59 @@
+<div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6" ng-click="goToResourcePage(resource)">
+    <!-- to make title-tile honor padding of tile-container -->
+    <div class="padding-enforcer">
+        <img id="tile-image" ng-src="{{resource.imgUrl}}" style="margin:auto;" class="img-responsive">
+        <div class="carousel-caption">
+            <p>{{resource.description}}</p>
+        </div>
+        <!--tile title -->
+        <div class="col-xs-12 tile-title">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-1">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <span class="resource-name">{{resource.name}}</span>
+                        </div>
+                        <div class="col-xs-12">
+                            <span><img ng-src="images/rating/{{determineStar(resource, 1)}}" alt="" width=15></span>
+                            <span><img ng-src="images/rating/{{determineStar(resource, 2)}}" alt="" width=15></span>
+                            <span><img ng-src="images/rating/{{determineStar(resource, 3)}}" alt="" width=15></span>
+                            <span><img ng-src="images/rating/{{determineStar(resource, 4)}}" alt="" width=15></span>
+                            <span><img ng-src="images/rating/{{determineStar(resource, 5)}}" alt="" width=15></span>
+                            <span class="num-ratings">({{resource.ratings.length}})</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Edit this resource: 
+                <button class="btn btn-warning btn-md glyphicon glyphicon-pencil pull-right" ng-click="resource.editing = true" ng-hide="resource.editing"></button>
+                <button ng-show="resource.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"></button>
+                <button ng-show="resource.editing" class="btn btn-danger btn-md glyphicon glyphicon-trash pull-right" ng-click="deleteTopic(topic)"></button>
+                <button ng-show="resource.editing" class="btn btn-warning btn-md glyphicon glyphicon-remove pull-right" ng-click="resource.editing = false"></button>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="choose-topic">Topic</label>
+                    <select name="choose-topic" id="choose-topic" ng-model="resource.newTopicId">
+                        <option ng-repeat="topic in allTopics" value="{{topic._id}}">{{topic.name}}</option>
+                    </select>
+                </div>
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="topic-name">Topic Name</label>
+                    <input type="text" id="topic-name" ng-model="topic.name">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
