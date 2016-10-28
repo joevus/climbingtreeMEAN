@@ -83,6 +83,10 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
     
     this.deleteTopic = function(topic) {
         return $http.delete("/api/auth/topics/" + topic._id);
-    }
+    };
+    
+    this.updateTopic = function(topic) {
+        return $http.put("api/auth/topics/" + topic._id, topic);
+    };
 
 }]);
