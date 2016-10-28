@@ -8,4 +8,22 @@ app.controller("ManageTopicsCtrl", ["$scope", "TopicService", function($scope, T
     TopicService.getAllTopics().then(function(response) {
         $scope.parentTopics = response.data;
     });
+    
+    $scope.deleteTopic = function(topic) {
+        var confirm = window.confirm("Are you sure you want to delete this topic?");
+        if(confirm) {
+            TopicService.deleteTopic(topic).then(function(response) {
+                
+                // refresh topic lists
+                TopicService.getAllAndParents().then(function(response) {
+                    $scope.allTopics = response.data;
+                });
+
+                TopicService.getAllTopics().then(function(response) {
+                    $scope.parentTopics = response.data;
+                });
+                
+            });
+        }
+    };
 }]);

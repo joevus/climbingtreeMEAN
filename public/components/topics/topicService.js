@@ -80,5 +80,9 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
     this.getAllAndParents = function() {
         return $http.get("/api/topics/populate/parents");
     };
+    
+    this.deleteTopic = function(topic) {
+        return $http.delete("/api/auth/topics/" + topic._id);
+    }
 
 }]);

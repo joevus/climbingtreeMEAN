@@ -18,21 +18,22 @@
 
                 <div class="panel-body">
                     <form class="form-inline">
-                        <div class="form-group">
+                        <div ng-show="topic.editing" class="form-group">
                             <label for="choose-parent">Parent</label>
                             <select name="choose-parent" id="choose-parent" ng-model="newParent">
                                 <option ng-repeat="parentTopic in parentTopics" value="{{parentTopic}}">{{parentTopic.name}}</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div ng-show="topic.editing" class="form-group">
                             <label for="topic-name">Topic Name</label>
                             <input type="text" id="topic-name" ng-model="topic.name">
                         </div>
                     </form>
                     
-                    <button class="btn btn-warning btn-xs glyphicon glyphicon-pencil pull-right"></button>
-                    <button class="btn btn-success btn-xs glyphicon glyphicon-floppy-disk pull-right"></button>
-                    <button class="btn btn-danger btn-xs glyhpicon glyphicon-trash pull-right"></button>
+                    <button class="btn btn-warning btn-md glyphicon glyphicon-pencil pull-right" ng-click="topic.editing = true" ng-hide="topic.editing"></button>
+                    <button ng-show="topic.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right"></button>
+                    <button ng-show="topic.editing" class="btn btn-danger btn-md glyphicon glyphicon-trash pull-right" ng-click="deleteTopic(topic)"></button>
+                    <button ng-show="topic.editing" class="btn btn-warning btn-md glyphicon glyphicon-remove pull-right" ng-click="topic.editing = false"></button>
                 </div>
             </div>
         </div>
