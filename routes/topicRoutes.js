@@ -18,6 +18,21 @@ topicRoutes.route("/")
 
     });
 
+// gets all topics, populates parents
+topicRoutes.route("/populate/parents")
+    .get(function(req, res) {
+        Topic
+        .find()
+        .populate('parent')
+        .exec(function(err, topics) {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                res.send(topics);
+            }
+        });
+    });
+
 topicRoutes.route("/:id")
     .get(function (req, res) {
         Topic.findById(req.params.id, function(err, topicObj) {

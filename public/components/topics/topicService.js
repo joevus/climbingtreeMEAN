@@ -76,5 +76,9 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
     this.postTopic = function(topic) {
         return $http.post("/api/auth/topics/", topic);
     };
+    
+    this.getAllAndParents = function() {
+        return $http.get("/api/topics/populate/parents");
+    };
 
 }]);
