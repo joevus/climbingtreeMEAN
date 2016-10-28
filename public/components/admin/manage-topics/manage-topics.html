@@ -20,8 +20,8 @@
                     <form class="form-inline">
                         <div ng-show="topic.editing" class="form-group">
                             <label for="choose-parent">Parent</label>
-                            <select name="choose-parent" id="choose-parent" ng-model="newParent">
-                                <option ng-repeat="parentTopic in parentTopics" value="{{parentTopic}}">{{parentTopic.name}}</option>
+                            <select name="choose-parent" id="choose-parent" ng-model="newParentId">
+                                <option ng-repeat="parentTopic in parentTopics" value="{{parentTopic._id}}">{{parentTopic.name}}</option>
                             </select>
                         </div>
                         <div ng-show="topic.editing" class="form-group">
@@ -31,7 +31,7 @@
                     </form>
                     
                     <button class="btn btn-warning btn-md glyphicon glyphicon-pencil pull-right" ng-click="topic.editing = true" ng-hide="topic.editing"></button>
-                    <button ng-show="topic.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right"></button>
+                    <button ng-show="topic.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right" ng-disabled="!newParentId || !topic.name"></button>
                     <button ng-show="topic.editing" class="btn btn-danger btn-md glyphicon glyphicon-trash pull-right" ng-click="deleteTopic(topic)"></button>
                     <button ng-show="topic.editing" class="btn btn-warning btn-md glyphicon glyphicon-remove pull-right" ng-click="topic.editing = false"></button>
                 </div>
