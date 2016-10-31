@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "TopicService", function ($scope, ResourceService, $location, TopicService) {
+app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "$window", "TopicService", function ($scope, ResourceService, $location, $window, TopicService) {
 
     $scope.ResourceService = ResourceService;
     $scope.goToResourcePage = function(resource) {
@@ -9,6 +9,10 @@ app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "Top
     }
     // function decides whether to return the star or yellowStar
     $scope.determineStar = ResourceService.determineStar;
+    
+    $scope.goToSite = function(resource) {
+        $window.open(resource.url, '_blank');
+    };
     
     TopicService.getAllTopics().then(function(response) {
         $scope.allTopics = response.data; 
