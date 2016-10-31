@@ -83,8 +83,13 @@ h6.panel-title {
     margin-bottom: 12px;
 }
 
+.tile-editor-container {
+    margin-bottom: 12px;
+}
+
 .padding-enforcer {
     position: relative;
+    cursor:pointer;
 }
 
 .tile-title {

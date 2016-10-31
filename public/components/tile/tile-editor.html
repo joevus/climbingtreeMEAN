@@ -1,6 +1,31 @@
-<div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-container col-xs-12 col-md-6" ng-click="goToResourcePage(resource)">
+<div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-editor-container col-xs-12 col-md-6">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3>Edit this resource: 
+                <button class="btn btn-warning btn-md glyphicon glyphicon-pencil pull-right" ng-click="resource.editing = true" ng-hide="resource.editing"></button>
+                <button ng-show="resource.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"></button>
+                <button ng-show="resource.editing" class="btn btn-danger btn-md glyphicon glyphicon-trash pull-right" ng-click="deleteTopic(topic)"></button>
+                <button ng-show="resource.editing" class="btn btn-warning btn-md glyphicon glyphicon-remove pull-right" ng-click="resource.editing = false"></button>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="choose-topic">Topic</label>
+                    <select name="choose-topic" id="choose-topic" ng-model="resource.newTopicId">
+                        <option ng-repeat="topic in allTopics" value="{{topic._id}}">{{topic.name}}</option>
+                    </select>
+                </div>
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="topic-name">Topic Name</label>
+                    <input type="text" id="topic-name" ng-model="topic.name">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- to make title-tile honor padding of tile-container -->
-    <div class="padding-enforcer">
+    <div class="padding-enforcer" ng-click="goToResourcePage(resource)">
         <img id="tile-image" ng-src="{{resource.imgUrl}}" style="margin:auto;" class="img-responsive">
         <div class="carousel-caption">
             <p>{{resource.description}}</p>
@@ -32,28 +57,5 @@
         </div>
 
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>Edit this resource: 
-                <button class="btn btn-warning btn-md glyphicon glyphicon-pencil pull-right" ng-click="resource.editing = true" ng-hide="resource.editing"></button>
-                <button ng-show="resource.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"></button>
-                <button ng-show="resource.editing" class="btn btn-danger btn-md glyphicon glyphicon-trash pull-right" ng-click="deleteTopic(topic)"></button>
-                <button ng-show="resource.editing" class="btn btn-warning btn-md glyphicon glyphicon-remove pull-right" ng-click="resource.editing = false"></button>
-            </h3>
-        </div>
-        <div class="panel-body">
-            <form class="form-inline">
-                <div ng-show="resource.editing" class="form-group">
-                    <label for="choose-topic">Topic</label>
-                    <select name="choose-topic" id="choose-topic" ng-model="resource.newTopicId">
-                        <option ng-repeat="topic in allTopics" value="{{topic._id}}">{{topic.name}}</option>
-                    </select>
-                </div>
-                <div ng-show="resource.editing" class="form-group">
-                    <label for="topic-name">Topic Name</label>
-                    <input type="text" id="topic-name" ng-model="topic.name">
-                </div>
-            </form>
-        </div>
-    </div>
+
 </div>
