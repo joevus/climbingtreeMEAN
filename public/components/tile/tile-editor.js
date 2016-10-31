@@ -10,7 +10,6 @@ app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "Top
     // function decides whether to return the star or yellowStar
     $scope.determineStar = ResourceService.determineStar;
     
-    console.log("hello");
     TopicService.getAllTopics().then(function(response) {
         $scope.allTopics = response.data; 
     });

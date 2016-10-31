@@ -1,24 +1,36 @@
 <div ng-repeat="resource in ResourceService.resourceList track by $index" class="tile-editor-container col-xs-12 col-md-6">
     <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3>Edit this resource: 
-                <button class="btn btn-warning btn-md glyphicon glyphicon-pencil pull-right" ng-click="resource.editing = true" ng-hide="resource.editing"></button>
-                <button ng-show="resource.editing" class="btn btn-success btn-md glyphicon glyphicon-floppy-disk pull-right" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"></button>
-                <button ng-show="resource.editing" class="btn btn-danger btn-md glyphicon glyphicon-trash pull-right" ng-click="deleteTopic(topic)"></button>
-                <button ng-show="resource.editing" class="btn btn-warning btn-md glyphicon glyphicon-remove pull-right" ng-click="resource.editing = false"></button>
-            </h3>
+        <div class="panel-heading text-right">
+                
+                <button class="btn btn-warning btn-md" ng-click="resource.editing = true" ng-hide="resource.editing"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button ng-show="resource.editing" class="btn btn-success btn-md" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+                <button ng-show="resource.editing" class="btn btn-danger btn-md" ng-click="deleteTopic(topic)"><span class="glyphicon glyphicon-trash"></span></button>
+                <button ng-show="resource.editing" class="btn btn-warning btn-md" ng-click="resource.editing = false"><span class="glyphicon glyphicon-remove"></span></button>
+            
         </div>
         <div class="panel-body">
-            <form class="form-inline">
+            <form>
                 <div ng-show="resource.editing" class="form-group">
                     <label for="choose-topic">Topic</label>
-                    <select name="choose-topic" id="choose-topic" ng-model="resource.newTopicId">
+                    <select class="form-control" name="choose-topic" id="choose-topic" ng-model="resource.newTopicId">
                         <option ng-repeat="topic in allTopics" value="{{topic._id}}">{{topic.name}}</option>
                     </select>
                 </div>
                 <div ng-show="resource.editing" class="form-group">
-                    <label for="topic-name">Topic Name</label>
-                    <input type="text" id="topic-name" ng-model="topic.name">
+                    <label for="resource-name">Resource Name</label>
+                    <input type="text" class="form-control" id="resource-name" ng-model="resource.name">
+                </div>
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="resource-description">Resource Description</label>
+                    <textarea class="form-control" name="resource-description" id="resource-description" ng-model="resource.description"></textarea>
+                </div>
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="resource-url">Resource Url</label>
+                    <input type="text" class="form-control" id="resource-url" ng-model="resource.url">
+                </div>
+                <div ng-show="resource.editing" class="form-group">
+                    <label for="resource-image-url">Image Url</label>
+                    <input type="text" class="form-control" id="resource-image-url" ng-model="resource.imgUrl">
                 </div>
             </form>
         </div>
