@@ -10,6 +10,22 @@ html, body, .ngview-window, .container {
     
 }
 */
+
+/* About page */
+.about-jumbotron {
+    position: relative;
+    background: rgba(204, 204, 204, 0.60) url("images/stembackground20percent.jpeg") center center;
+    width: 100%;
+    height: 325px;
+    background-size: cover;
+    overflow: hidden;
+    margin-top: -20px;
+}
+
+.about-content {
+    font-size: 16pt;
+}
+
 .topics-col {
 /*    height: 100%;*/
     height: 305px;
