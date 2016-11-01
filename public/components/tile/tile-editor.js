@@ -31,7 +31,20 @@ app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "$wi
                 });
             });
         }
-        
+    };
+    
+    // update resource!
+    $scope.updateResource = function(resource) {
+        var confirm = $window.confirm("Are you sure you want to update this resource?");
+        if(confirm) {
+            resource.editing = false;
+            ResourceService.updateResource(resource).then(function(response) {
+                // update resource list, to show resource updated.
+                Resource.getAll().then(function(response) {
+                    ResourceService.resourceList = response.data;
+                });
+            });
+        }
     };
     
 }])

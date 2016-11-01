@@ -3,7 +3,7 @@
         <div class="panel-heading text-right">
                 
                 <button class="btn btn-warning btn-md" ng-click="resource.editing = true" ng-hide="resource.editing"><span class="glyphicon glyphicon-pencil"></span></button>
-                <button ng-show="resource.editing" class="btn btn-success btn-md" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+                <button ng-show="resource.editing" class="btn btn-success btn-md" ng-disabled="!resource.topic || !resource.name || !resource.description" ng-click="updateResource(resource)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
                 <button ng-show="resource.editing" class="btn btn-danger btn-md" ng-click="deleteResource(resource)"><span class="glyphicon glyphicon-trash"></span></button>
                 <button ng-show="resource.editing" class="btn btn-warning btn-md" ng-click="resource.editing = false"><span class="glyphicon glyphicon-remove"></span></button>
             
@@ -12,7 +12,7 @@
             <form>
                 <div ng-show="resource.editing" class="form-group">
                     <label for="choose-topic">Topic</label>
-                    <select class="form-control" name="choose-topic" id="choose-topic" ng-model="resource.newTopicId">
+                    <select class="form-control" name="choose-topic" id="choose-topic" ng-model="resource.topic">
                         <option ng-repeat="topic in allTopics" value="{{topic._id}}">{{topic.name}}</option>
                     </select>
                 </div>

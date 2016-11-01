@@ -34,6 +34,10 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
         return $http.delete("/api/auth/resources/" + resource._id);
     };
     
+    this.updateResource = function(resource) {
+        return $http.put("/api/auth/resources/" + resource._id, resource);  
+    };
+    
     // Comments \\
     
     this.commentList = [];
