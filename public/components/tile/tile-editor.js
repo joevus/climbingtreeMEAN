@@ -10,7 +10,9 @@ app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "$wi
     // function decides whether to return the star or yellowStar
     $scope.determineStar = ResourceService.determineStar;
     
-    $scope.goToSite = function(resource) {
+    $scope.goToSite = function($event, resource) {
+        $event.preventDefault();
+        $event.stopPropagation();
         $window.open(resource.url, '_blank');
     };
     
