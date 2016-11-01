@@ -22,7 +22,12 @@ app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "$wi
     
     // when click on trash icon
     $scope.deleteResource = function(resource) {
-        ResourceService.deleteResource(resource);
+        ResourceService.deleteResource(resource).then(function(response) {
+            // update resource list, to show resource deleted.
+            ResourceService.getAll().then(function(response) {
+                ResourceService.resourceList = response.data;
+            });
+        });
     };
     
 }])
