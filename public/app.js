@@ -18,6 +18,10 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "components/submit-resource/submit-resource.html",
             controller: "SubmitResourceCtrl"
         })
+        .when("/about", {
+            templateUrl: "components/about/about.html",
+            controller: "AboutController"
+        })
         .when("/admin", {
             templateUrl: "components/admin/admin.html",
             controller: "AdminController"
