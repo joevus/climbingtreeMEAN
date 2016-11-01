@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("TileCtrl", ["$scope", "ResourceService", "$location", function ($scope, ResourceService, $location) {
+app.controller("TileCtrl", ["$scope", "ResourceService", "$location", "$window", function ($scope, ResourceService, $location, $window) {
 
     $scope.ResourceService = ResourceService;
     $scope.goToResourcePage = function(resource) {
@@ -9,6 +9,14 @@ app.controller("TileCtrl", ["$scope", "ResourceService", "$location", function (
     }
     // function decides whether to return the star or yellowStar
     $scope.determineStar = ResourceService.determineStar;
+    
+    // navigate to site when click on globe icon
+    $scope.goToSite = function($event, resource) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $window.open(resource.url, '_blank');
+    };
+    
 }])
     .directive("tile", function () {
         return {
