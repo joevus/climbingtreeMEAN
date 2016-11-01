@@ -20,6 +20,11 @@ app.controller("TileEditorCtrl", ["$scope", "ResourceService", "$location", "$wi
         $scope.allTopics = response.data; 
     });
     
+    // when click on trash icon
+    $scope.deleteResource = function(resource) {
+        ResourceService.deleteResource(resource);
+    };
+    
 }])
     .directive("tileEditor", function () {
         return {

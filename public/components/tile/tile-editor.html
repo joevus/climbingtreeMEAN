@@ -4,7 +4,7 @@
                 
                 <button class="btn btn-warning btn-md" ng-click="resource.editing = true" ng-hide="resource.editing"><span class="glyphicon glyphicon-pencil"></span></button>
                 <button ng-show="resource.editing" class="btn btn-success btn-md" ng-disabled="!topic.newParentId || !topic.name" ng-click="updateTopic(topic)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-                <button ng-show="resource.editing" class="btn btn-danger btn-md" ng-click="deleteTopic(topic)"><span class="glyphicon glyphicon-trash"></span></button>
+                <button ng-show="resource.editing" class="btn btn-danger btn-md" ng-click="deleteResource(resource)"><span class="glyphicon glyphicon-trash"></span></button>
                 <button ng-show="resource.editing" class="btn btn-warning btn-md" ng-click="resource.editing = false"><span class="glyphicon glyphicon-remove"></span></button>
             
         </div>

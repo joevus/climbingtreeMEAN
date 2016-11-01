@@ -30,6 +30,9 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
         return $http.get("/api/resources");
     };
     
+    this.deleteResource = function(resource) {
+        return $http.delete("/api/auth/resources/" + resource._id);
+    };
     
     // Comments \\
     
