@@ -21,6 +21,8 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
         $http.get("api/topics/" + "57f5493d014f140d5c4ffff6").then(function(response) {
             self.currentTopic = response.data;
             ResourceService.getResources(self.currentTopic);
+            //get children topics
+            self.getTopics(self.currentTopic);
         });
     };
     

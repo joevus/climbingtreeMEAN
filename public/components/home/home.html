@@ -1,4 +1,36 @@
+<div class="container">
+    <div class="row topics-row">
+        <div class="col-xs-12 col-md-6 topics-col">
+            <div class="panel panel-primary">
+                <div class="panel-heading main-topic">
+                    <h2 class="panel-title main-topic-header">
+                        {{TopicService.currentTopic.name}}
+                    </h2>
+                    <button type="button" class="btn btn-lg btn-info back-button" ng-click="TopicService.navUp(TopicService.currentTopic)" aria-label="Left Align">
+                        <!--http://glyphicons.com/-->
+                        <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
 
+            <!-- canvas to draw lines -->
+            <div class="canvasContainer">
+                <!-- container to make canvas honor padding of parent col-->
+                <canvas id="topicCanvas" width={{canvasWidth}}></canvas>
+            </div>
+            <button class="btn btn-lg subtopic" ng-repeat="topic in TopicService.topicList" ng-click="displayTopics(topic)" drawing-directive>{{topic.name}}</button>
+        </div>
+        <!-- directive to display tiles  -->
+        <tile></tile>
+    </div>
+</div>
+
+
+
+
+
+
+<!--
 <div class="container">
     <div class="row topics-row">
         <div class="col-xs-12 col-md-6 col-md-offset-3 topics-col">
@@ -11,8 +43,10 @@
     <div class="row carousel-row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
         <!-- directive to display the carousel  -->
-            <tile></tile>
+<!--           <tile></tile>
         </div>
     </div>
 
 </div>
+
+-->

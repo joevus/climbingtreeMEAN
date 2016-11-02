@@ -4,11 +4,15 @@ app.controller("HomeController", ["$scope", "HomeService", "TopicService", "$loc
     // makes resources show for STEM
     TopicService.setSTEMTopic();
     
-    $scope.displayTopics = function (topicName) {
-        TopicService.getTopicByName(topicName).then(function(response) {
-            $location.path("/topics/" + response._id);
-        });
-        
+    // store canvas width to use in topics.html
+    var canvasContainer = document.getElementsByClassName("canvasContainer")[0];
+    $scope.canvasWidth = canvasContainer.getBoundingClientRect().width;
+    
+    // make TopicService available on scope
+    $scope.TopicService = TopicService;
+    
+    $scope.displayTopics = function (topic) {
+        $location.path("/topics/" + topic._id); 
     }
                                   
 }]);
