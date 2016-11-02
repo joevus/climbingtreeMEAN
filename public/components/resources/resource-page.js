@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService", "$timeout", "UserObjService", function($scope, ResourceService, TopicService, $timeout, UserObjService) {
+app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService", "$timeout", "UserObjService", "$location", function($scope, ResourceService, TopicService, $timeout, UserObjService, $location) {
     ResourceService.setCurrentResource().then(function(response) {
         $scope.resource = response;
         
@@ -45,7 +45,13 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
     
     $scope.TopicService = TopicService;
     
-    $scope.backLink = "#/topics/" + $scope.currentTopic;
+    $scope.backLink = function(topicId) {
+        if(topicId === "57f5493d014f140d5c4ffff6") {
+            $location.path("/");
+        } else {
+            $location.path("/topics/" + topicId);
+        }
+    };
     
     // Ratings \\
     // enable ratings
