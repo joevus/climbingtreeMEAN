@@ -6,7 +6,7 @@
                     <h2 class="panel-title main-topic-header">
                         {{TopicService.currentTopic.name}}
                     </h2>
-                    <button type="button" class="btn btn-lg btn-info back-button" ng-click="TopicService.navUp(TopicService.currentTopic)" aria-label="Left Align">
+                    <button type="button" class="btn btn-lg btn-info back-button" ng-click="TopicService.navUp(TopicService.currentTopic)" aria-label="Left Align" ng-disabled="true">
                         <!--http://glyphicons.com/-->
                         <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
                     </button>
