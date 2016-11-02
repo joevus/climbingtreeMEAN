@@ -67,11 +67,11 @@ app.service("UserService", ["$http", "$location", "TokenService", "UserObjServic
     // signing up, logging in and out
     
     this.signup = function(user) {
-        return $http.post("http://localhost:8000/auth/signup", user);
+        return $http.post("/auth/signup", user);
     };
     
     this.login = function(user) {
-        return $http.post("http://localhost:8000/auth/login", user).then(function(response) {
+        return $http.post("/auth/login", user).then(function(response) {
             TokenService.setToken(response.data.token);
             UserObjService.setUser(response.data.user._id);
             if(response.data.user.admin) TokenService.setAdmin();
