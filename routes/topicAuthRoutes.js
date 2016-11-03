@@ -1,6 +1,6 @@
 var express = require('express');
-var topicAuthRoutes = express.Router();
 var Topic = require('../models/topic');
+var topicAuthRoutes = express.Router();
 
 topicAuthRoutes.route("/")
     .post(function(req, res){

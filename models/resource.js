@@ -12,7 +12,7 @@ var ResourceSchema = new Schema({
     imgUrl: String,
     topic: {
         type: Schema.Types.ObjectId,
-        ref: 'topic'
+        ref: 'Topic'
     },
     ratings: [{
         type: Schema.Types.ObjectId,

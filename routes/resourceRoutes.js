@@ -32,6 +32,7 @@ resourceRoutes.route("/:id")
         Resource
         .findById(req.params.id)
         .populate('ratings')
+        .populate('topic')
         .exec(function (err, resourceObj) {
             if (err) {
                 res.status(500).send(err);

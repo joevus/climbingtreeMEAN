@@ -35,7 +35,10 @@ topicRoutes.route("/populate/parents")
 
 topicRoutes.route("/:id")
     .get(function (req, res) {
-        Topic.findById(req.params.id, function(err, topicObj) {
+        Topic
+        .findById(req.params.id)
+        .populate('parent')
+        .exec(function(err, topicObj) {
             if(err) {
                 res.status(500).send(err);
             } else {

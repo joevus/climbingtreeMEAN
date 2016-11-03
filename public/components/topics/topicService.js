@@ -18,7 +18,7 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
     
     // set STEM topic
     this.setSTEMTopic = function() {
-        $http.get("api/topics/" + "57f5493d014f140d5c4ffff6").then(function(response) {
+        $http.get("api/topics/topicbyname/STEM").then(function(response) {
             self.currentTopic = response.data;
             ResourceService.getResources(self.currentTopic);
             //get children topics
@@ -58,13 +58,13 @@ app.service("TopicService", ["$http", "$location", "DrawingService", "ResourceSe
         DrawingService.clearCanvas();
 
         // if reached the top of tree go to home (STEM) screen
-        if (topic.parent === "57f5493d014f140d5c4ffff6") {
+        if (topic.parent.name === "STEM") {
             $location.path("/");
             
             // set the current topic
         } else {
             // otherwise, navigate up
-            $location.path("/topics/" + topic.parent);
+            $location.path("/topics/" + topic.parent._id);
 
         }
         

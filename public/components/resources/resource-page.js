@@ -5,7 +5,7 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
         $scope.resource = response;
         
         // check if current topic is set, if not set it
-        $scope.currentTopic = TopicService.currentTopic || TopicService.setCurrentTopic($scope.resource.topic);
+        $scope.currentTopic = TopicService.currentTopic || TopicService.setCurrentTopic($scope.resource.topic._id);
         
         // get user's rating
         ResourceService.setUserRating($scope.resource);
@@ -45,11 +45,11 @@ app.controller("ResourcePageCtrl", ["$scope", "ResourceService", "TopicService",
     
     $scope.TopicService = TopicService;
     
-    $scope.backLink = function(topicId) {
-        if(topicId === "57f5493d014f140d5c4ffff6") {
+    $scope.backLink = function(topic) {
+        if(topic.name === "STEM") {
             $location.path("/");
         } else {
-            $location.path("/topics/" + topicId);
+            $location.path("/topics/" + topic._id);
         }
     };
     
