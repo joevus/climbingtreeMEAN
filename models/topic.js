@@ -6,7 +6,6 @@ var TopicSchema = new Schema({
     parent: {
         type: Schema.Types.ObjectId,
         ref: "Topic",
-        required: true
     },
     children: [{
         type: Schema.Types.ObjectId,

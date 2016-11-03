@@ -12,13 +12,18 @@ topicAuthRoutes.route("/")
                 if(err) {
                     res.status(500).send(err);
                 } else {
+                    console.log("newTopic id: " + newTopic._id);
                     parentTopic.children.push(newTopic._id);
                     parentTopic.save(function(err, parentTopic) {
                         if(err) {
+                            console.log("err saving parentTopic");
+                            console.log(err);
                             res.status(500).send(err);
                         } else {
                             newTopic.save(function(err, newTopic) {
                                 if(err) {
+                                    console.log("err saving newTopic");
+                                    console.log(err);
                                     res.status(500).send(err);
                                 } else {
                                     res.send(newTopic);
