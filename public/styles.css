@@ -117,6 +117,7 @@ h6.panel-title {
     background-color: rgb(65,65,65);
     background-color: rgba(65,65,65,.8);
     padding: 8px 3px;
+    border-radius: 6px;
 }
 
 .tile-descrip {
