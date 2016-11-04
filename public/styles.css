@@ -14,7 +14,7 @@ html, body, .ngview-window, .container {
 /* About page */
 .about-jumbotron {
     position: relative;
-    background: rgba(204, 204, 204, 0.60) url("images/stembackground20percent.jpeg") center center;
+    background: rgba(204, 204, 204, 0.60) url("http://res.cloudinary.com/climbing-tree/image/upload/v1478297342/stembackground30percent_yqk8iq.jpg") center center;
     width: 100%;
     height: 325px;
     background-size: cover;
