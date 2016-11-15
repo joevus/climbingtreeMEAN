@@ -10,6 +10,7 @@
                 <ul class="nav navbar-nav">
                     <li ng-class="{ active: isActive('/') }"><a href="#/">Home</a></li>
                     <li ng-class="{ active: isActive('/about') }"><a href="#/about">About</a></li>
+                    <li ng-class="{ active: isActive('/blog') }"><a href="/blog">Blog</a></li>
                     <li ng-class="{ active: isActive('/submit-resource') }"><a href="#/submit-resource">Submit Resource</a></li>
                     <li ng-class="{ active: isActive('/post-resource') || isActive('/manage-topics') || isActive('/manage-resources') } " class="dropdown">
                         <a ng-show="userService.isAdmin()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools <span class="caret"></span></a>
