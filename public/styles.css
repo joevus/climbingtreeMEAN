@@ -77,12 +77,11 @@ body {
 
 .main-topic-header {
     display: inline-block;
-    width: 70%;
+    width: 66%;
     margin-left: 12%;
 }
 
 .back-button {
-   width: 13%;
 }
 
 .panel {
