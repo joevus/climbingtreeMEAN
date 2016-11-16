@@ -59,7 +59,9 @@ body {
     margin-top: 3%;
     margin-left: 6%;
     padding: 10px 7px;
-/*    z-index: 10;*/
+    /* position: relative allows z-index to have effect */
+    position: relative;
+    z-index: 10;
 }
 
 #topicCanvas {
@@ -70,7 +72,7 @@ body {
 
 .canvasContainer {
     position: relative;
-    z-index: -1;
+/*    z-index: 10;*/
 }
 
 .main-topic-header {
@@ -85,6 +87,11 @@ body {
 
 .panel {
     margin: 0;
+}
+
+.topics-panel {
+    background-color: aliceblue;
+    height: 301px;
 }
 
 h1.panel-title {
