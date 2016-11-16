@@ -14,11 +14,11 @@
             </div>
 
             <!-- canvas to draw lines -->
-<!--            <div class="canvasContainer">-->
+            <div class="canvasContainer">
                 <!-- container to make canvas honor padding of parent col-->
-<!--                <canvas id="topicCanvas" width={{canvasWidth}}></canvas>-->
-<!--            </div>-->
-            <button class="btn btn-info btn-lg subtopic" ng-repeat="topic in TopicService.topicList" ng-click="displayTopics(topic)" drawing-directive>{{topic.name}}</button>
+                <canvas id="topicCanvas" width={{canvasWidth}}></canvas>
+            </div>
+            <button class="btn btn-default btn-lg subtopic" ng-repeat="topic in TopicService.topicList" ng-click="displayTopics(topic)" drawing-directive>{{topic.name}}</button>
         </div>
         <!-- directive to display tiles  -->
         <tile></tile>

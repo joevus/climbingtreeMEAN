@@ -5,8 +5,8 @@ app.controller("HomeController", ["$scope", "HomeService", "TopicService", "$loc
     TopicService.setSTEMTopic();
     
     // store canvas width to use in topics.html
-    //var canvasContainer = document.getElementsByClassName("canvasContainer")[0];
-    //$scope.canvasWidth = canvasContainer.getBoundingClientRect().width;
+    var canvasContainer = document.getElementsByClassName("canvasContainer")[0];
+    $scope.canvasWidth = canvasContainer.getBoundingClientRect().width;
     
     // make TopicService available on scope
     $scope.TopicService = TopicService;
