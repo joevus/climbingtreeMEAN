@@ -16,7 +16,7 @@
                 <!-- canvas to draw lines -->
                 <div class="canvasContainer">
                     <!-- container to make canvas honor padding of parent col-->
-                    <canvas id="topicCanvas" width={{canvasWidth}}></canvas>
+                    <canvas id="topicCanvas" width={{canvasWidth}} height=230></canvas>
                 </div>
                 <button class="btn btn-lg btn-default subtopic" ng-repeat="topic in TopicService.topicList" ng-click="clicky(topic)" drawing-directive>{{topic.name}}</button>
             </div>
