@@ -18,7 +18,7 @@
                 <!-- container to make canvas honor padding of parent col-->
                 <canvas id="topicCanvas" width={{canvasWidth}}></canvas>
             </div>
-            <button class="btn btn-lg subtopic" ng-repeat="topic in TopicService.topicList" ng-click="clicky(topic)" drawing-directive>{{topic.name}}</button>
+            <button class="btn btn-lg btn-default subtopic" ng-repeat="topic in TopicService.topicList" ng-click="clicky(topic)" drawing-directive>{{topic.name}}</button>
 <!--            TopicService.getTopics(topic)-->
         </div>
         <!-- directive to display tiles  -->
