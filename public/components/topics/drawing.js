@@ -35,17 +35,19 @@ app.service("DrawingService", [function () {
             determine left and right positions for all lines
                 - width of canvas
                 - use percentages, multiply total width
+                - x3 is same as margin-left of .subtopic OR
+                - x3 is same as margin-left + .subtopic width + margin-left
             */
             var canvas = document.getElementById("topicCanvas");
 
             if (scope.$index % 2 === 0) {
-                var x1 = canvas.width * .04;
-                var x2 = canvas.width * .04;
-                var x3 = canvas.width * .10;
+                var x1 = canvas.width * .03;
+                var x2 = canvas.width * .03;
+                var x3 = canvas.width * .06;
             } else {
-                var x1 = canvas.width * .49;
-                var x2 = canvas.width * .49;
-                var x3 = canvas.width * .55;
+                var x1 = canvas.width * .50;
+                var x2 = canvas.width * .50;
+                var x3 = canvas.width * .53;
             }
 
 
