@@ -60,6 +60,7 @@ body {
     margin-top: 3%;
     margin-left: 6%;
     padding: 10px 7px;
+    white-space: normal;
     /* position: relative allows z-index to have effect */
     position: relative;
     z-index: 10;
