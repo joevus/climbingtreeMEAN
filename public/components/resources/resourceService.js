@@ -10,7 +10,6 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
         
         $http.get("/api/resources/bytopicid/" + topic._id).then(function(response) {
             self.resourceList = response.data;
-            console.log(response.data);
         });
         
     };
@@ -76,7 +75,10 @@ app.service("ResourceService", ["$http", "$location", "$routeParams", "UserObjSe
             ratingSum += ratings[i].stars;
         }
         var avgRating = ratingSum / ratings.length;
-        console.log(avgRating);
+        // the below console.log logs a bunch of times (commented out now). It may be
+        // worth turning back on and seeing why this code runs so many times.
+        //console.log(avgRating);
+        
         // if avg rating is 2.5 and we're on starNum 3, it will be yellow
         if(avgRating >= starNum - 0.5) {
             return "yellowStar.png";
