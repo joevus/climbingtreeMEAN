@@ -17,7 +17,7 @@
                     <canvas id="topicCanvas" width={{canvasWidth}} height=230></canvas>
                 </div>
 
-                <button class="btn btn-default btn-lg subtopic" ng-repeat="topic in TopicService.topicList" ng-click="displayTopics(topic)" drawing-directive>{{topic.name}}</button>
+                <drawing-directive ng-repeat="topic in TopicService.topicList"></drawing-directive>
             </div>
 
 

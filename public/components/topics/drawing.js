@@ -8,9 +8,9 @@ app.service("DrawingService", [function () {
         this.clearCanvas = function () {
             var canvas = document.getElementById("topicCanvas");
             // if canvas is on page, then clear it.
-            if(canvas) {
+            if (canvas) {
                 var ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);    
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }
 
@@ -29,56 +29,74 @@ app.service("DrawingService", [function () {
 
 }])
     .directive('drawingDirective', ["DrawingService", function (DrawingService) {
-        return function (scope, element, attrs) {
+        return {
+            template: '<button class="btn btn-lg btn-default subtopic" ng-click="clicky(topic)">{{topic.name}}</button>',
+            link: function (scope, element, attrs) {
+                scope.$watch('topic', function(newValue, oldValue) {
+                    var val = newValue || null;
+                    if (val) {
+                        drawLines();
+                    }
+                });
 
-            /*
-            determine left and right positions for all lines
-                - width of canvas
-                - use percentages, multiply total width
-                - x3 is same as margin-left of .subtopic OR
-                - x3 is same as margin-left + .subtopic width + margin-left
-            */
-            var canvas = document.getElementById("topicCanvas");
+                function drawLines() {
 
-            if (scope.$index % 2 === 0) {
-                var x1 = canvas.width * .03;
-                var x2 = canvas.width * .03;
-                var x3 = canvas.width * .06;
-            } else {
-                var x1 = canvas.width * .50;
-                var x2 = canvas.width * .50;
-                var x3 = canvas.width * .53;
+                    /*
+                    determine left and right positions for all lines
+                        - width of canvas
+                        - use percentages, multiply total width
+                        - x3 is same as margin-left of .subtopic OR
+                        - x3 is same as margin-left + .subtopic width + margin-left
+                    */
+                    var canvas = document.getElementById("topicCanvas");
+
+                    if (scope.$index % 2 === 0) {
+                        var x1 = canvas.width * .03;
+                        var x2 = canvas.width * .03;
+                        var x3 = canvas.width * .06;
+                    } else {
+                        var x1 = canvas.width * .50;
+                        var x2 = canvas.width * .50;
+                        var x3 = canvas.width * .53;
+                    }
+
+
+                    /*
+                    - determine vertical starting point for buttons 1 and 2
+                        - top = 0
+                    - vertical ending point for all buttons
+                        - (y position of button) + 1/2 * (height of button)
+                    - vertical starting point for buttons 3 and beyond
+                        - lowest vertical point for nth-2 button
+                        - found with y2List[scope.$index-2]
+                        
+                    */
+
+                    console.log(element[0].childNodes[0].childNodes[0].nodeValue);
+                    console.log(element[0].childNodes[0]);
+
+                    var mainTopic = document.getElementsByClassName("main-topic");
+                    var mainTopicBottom = mainTopic[0].getBoundingClientRect().bottom;
+                    var buttonTop = element[0].childNodes[0].getBoundingClientRect().top - mainTopicBottom;
+                    var buttonHeight = element[0].childNodes[0].getBoundingClientRect().height;
+
+                    console.log("buttonHeight: " + buttonHeight);
+                    console.log(element[0]);
+                    if (scope.$index <= 1) {
+                        var y1 = 0;
+                    } else {
+                        var y1 = DrawingService.y2List[scope.$index - 2];
+                    }
+
+                    var y2 = buttonTop + .5 * buttonHeight;
+                    var y3 = buttonTop + .5 * buttonHeight;
+                    DrawingService.y2List.push(y2);
+
+                    // use positions to draw lines on canvas
+                    DrawingService.drawLines(x1, x2, x3, y1, y2, y3);
+                }
             }
 
-
-            /*
-            - determine vertical starting point for buttons 1 and 2
-                - top = 0
-            - vertical ending point for all buttons
-                - (y position of button) + 1/2 * (height of button)
-            - vertical starting point for buttons 3 and beyond
-                - lowest vertical point for nth-2 button
-                - found with y2List[scope.$index-2]
-                
-            */
-
-            var mainTopic = document.getElementsByClassName("main-topic");
-            var mainTopicBottom = mainTopic[0].getBoundingClientRect().bottom;
-            var buttonTop = element[0].getBoundingClientRect().top - mainTopicBottom;
-            var buttonHeight = element[0].getBoundingClientRect().height;
-
-            if (scope.$index <= 1) {
-                var y1 = 0;
-            } else {
-                var y1 = DrawingService.y2List[scope.$index - 2];
-            }
-
-            var y2 = buttonTop + .5 * buttonHeight;
-            var y3 = buttonTop + .5 * buttonHeight;
-            DrawingService.y2List.push(y2);
-
-            // use positions to draw lines on canvas
-            DrawingService.drawLines(x1, x2, x3, y1, y2, y3);
 
         }
 }]);
