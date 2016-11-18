@@ -3,20 +3,27 @@ var app = angular.module("TreeApp");
 
 app.service("DrawingService", [function () {
 
+        var self = this;
+    
         this.y2List = [];
+    
+        this.clearY2List = function() {
+            self.y2List = [];
+        };
 
         this.clearCanvas = function () {
+            self.clearY2List();
             var canvas = document.getElementById("topicCanvas");
             // if canvas is on page, then clear it.
             if (canvas) {
                 var ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
-        }
+        };
 
         this.drawLines = function (x1, x2, x3, y1, y2, y3) {
             // draw lines between main topic and subtopics
-
+            
             var canvas = document.getElementById("topicCanvas");
             var ctx = canvas.getContext('2d');
             ctx.beginPath();
@@ -24,11 +31,11 @@ app.service("DrawingService", [function () {
             ctx.lineTo(x2, y2);
             ctx.lineTo(x3, y3);
             ctx.stroke();
-        }
+        };
 
 
 }])
-    .directive('mySubtopic', ["DrawingService", function (DrawingService) {
+    .directive('mySubtopic', ["DrawingService", "$window", function (DrawingService, $window) {
         return {
             template: '<button class="btn btn-lg btn-default subtopic" ng-click="displayTopics(topic)">{{topic.name}}</button>',
             link: function (scope, element, attrs) {
@@ -37,6 +44,22 @@ app.service("DrawingService", [function () {
                     if (val) {
                         drawLines();
                     }
+                });
+                
+                // re-draw lines when window size changes
+                scope.width = $window.innerWidth;
+                angular.element($window).bind('resize', function() {
+                    if(scope.$index === 0) {
+                        DrawingService.clearCanvas();
+                        // Modify canvas width in html
+                        var canvasContainer = document.getElementsByClassName("canvasContainer")[0];
+                        var newWidth = canvasContainer.getBoundingClientRect().width;
+                        var canvas = document.querySelectorAll("#topicCanvas");
+                        angular.element(canvas).attr('width', newWidth);
+                    }
+                        
+                    drawLines();
+                    //scope.$digest();
                 });
 
                 function drawLines() {
@@ -49,7 +72,6 @@ app.service("DrawingService", [function () {
                         - x3 is same as margin-left + .subtopic width + margin-left
                     */
                     var canvas = document.getElementById("topicCanvas");
-
                     if (scope.$index % 2 === 0) {
                         var x1 = canvas.width * .03;
                         var x2 = canvas.width * .03;
@@ -86,7 +108,7 @@ app.service("DrawingService", [function () {
                     var y2 = buttonTop + .5 * buttonHeight;
                     var y3 = buttonTop + .5 * buttonHeight;
                     DrawingService.y2List.push(y2);
-
+                    
                     // use positions to draw lines on canvas
                     DrawingService.drawLines(x1, x2, x3, y1, y2, y3);
                 }
