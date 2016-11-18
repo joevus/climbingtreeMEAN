@@ -30,7 +30,7 @@ app.service("DrawingService", [function () {
 }])
     .directive('drawingDirective', ["DrawingService", function (DrawingService) {
         return {
-            template: '<button class="btn btn-lg btn-default subtopic" ng-click="clicky(topic)">{{topic.name}}</button>',
+            template: '<button class="btn btn-lg btn-default subtopic" ng-click="displayTopics(topic)">{{topic.name}}</button>',
             link: function (scope, element, attrs) {
                 scope.$watch('topic', function(newValue, oldValue) {
                     var val = newValue || null;

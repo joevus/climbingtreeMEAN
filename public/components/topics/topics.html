@@ -18,7 +18,7 @@
                     <!-- container to make canvas honor padding of parent col-->
                     <canvas id="topicCanvas" width={{canvasWidth}} height=230></canvas>
                 </div>
-                <drawing-directive></drawing-directive>
+                <drawing-directive ng-repeat="topic in TopicService.topicList"></drawing-directive>
             </div>
         </div>
         <!-- directive to display tiles  -->

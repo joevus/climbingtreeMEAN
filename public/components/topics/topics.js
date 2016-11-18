@@ -13,7 +13,7 @@ app.controller("TopicsController", ["$scope", "TopicService", "DrawingService", 
     $scope.TopicService = TopicService;
     
     // test onclick
-    $scope.clicky = function(topic) {
+    $scope.displayTopics = function(topic) {
         $location.path("/topics/" + topic._id);
     }
     
