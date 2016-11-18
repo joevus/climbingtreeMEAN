@@ -1,4 +1,4 @@
-// For drawing lines to connect the topics like a pedigree
+// For Generating subtopics and drawing lines to connect the topics like a pedigree
 var app = angular.module("TreeApp");
 
 app.service("DrawingService", [function () {
@@ -72,16 +72,11 @@ app.service("DrawingService", [function () {
                         
                     */
 
-                    console.log(element[0].childNodes[0].childNodes[0].nodeValue);
-                    console.log(element[0].childNodes[0]);
-
                     var mainTopic = document.getElementsByClassName("main-topic");
                     var mainTopicBottom = mainTopic[0].getBoundingClientRect().bottom;
                     var buttonTop = element[0].childNodes[0].getBoundingClientRect().top - mainTopicBottom;
                     var buttonHeight = element[0].childNodes[0].getBoundingClientRect().height;
 
-                    console.log("buttonHeight: " + buttonHeight);
-                    console.log(element[0]);
                     if (scope.$index <= 1) {
                         var y1 = 0;
                     } else {

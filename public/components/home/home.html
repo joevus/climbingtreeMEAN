@@ -11,12 +11,12 @@
                         <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
                     </button>
                 </div>
-                <!-- canvas to draw lines -->
+                <!-- container to make canvas honor padding of parent col-->
                 <div class="canvasContainer">
-                    <!-- container to make canvas honor padding of parent col-->
+                    <!-- canvas to draw lines. Subtopic directive includes logic to draw lines on canvas. -->
                     <canvas id="topicCanvas" width={{canvasWidth}} height=230></canvas>
                 </div>
-
+                
                 <my-subtopic ng-repeat="topic in TopicService.topicList"></my-subtopic>
             </div>
 
