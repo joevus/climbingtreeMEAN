@@ -1,4 +1,4 @@
-var app = angular.module("TreeApp.Admin", []);
+var app = angular.module("TreeApp.Admin", ['ngFileUpload']);
 
 app.config(["$routeProvider", function($routeProvider) {
     $routeProvider
