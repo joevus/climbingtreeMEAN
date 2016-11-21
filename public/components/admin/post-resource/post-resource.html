@@ -16,7 +16,11 @@
                 </div>
                 <div class="form-group">
                     <label for="imgUrl">Image Url</label>
-                    <input type="text" class="form-control" id="imgUrl" placeholder="url" ng-model="newResource.imgUrl">
+                    <input type="text" class="form-control" id="imgUrl" placeholder="upload image and url will show here" ng-model="newResource.imgUrl">
+                </div>
+                <div class="form-group">
+                    <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*">Drop image here or click to upload</div>
+                    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
                 </div>
                 <div class="form-group">
                     <label for="existing-topic">Use existing topic</label>

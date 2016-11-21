@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "ResourceService", function($scope, SubmitService, TopicService, ResourceService) {
+app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "ResourceService", "Upload", "$timeout", function($scope, SubmitService, TopicService, ResourceService, Upload, $timeout) {
     SubmitService.getRecommendations().then(function(response){
        $scope.recommendations = response.data; 
     });
