@@ -52,6 +52,8 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
     };
 
     // uploading images
+    $scope.showProgress = false; // don't show progress bar until image is uploading
+
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });
@@ -59,7 +61,10 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
     $scope.log = '';
 
     $scope.upload = function (files) {
+
         if (files && files.length) {
+            // show progress bar
+            $scope.showProgress = true;
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var fdata = new FormData();
@@ -81,7 +86,7 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
                     }).then(function (resp) {
                         console.log(resp);
                         $timeout(function () {
-                            if($scope.newResource) {
+                            if ($scope.newResource) {
                                 $scope.newResource.imgUrl = resp.secure_url;
                             } else {
                                 $scope.newResource = {};
@@ -95,7 +100,9 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
                         });
                     }, null, function (evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        $scope.barWidth = {width: progressPercentage + "%"};
+                        $scope.barWidth = {
+                            width: progressPercentage + "%"
+                        };
 
                     });
                 }
