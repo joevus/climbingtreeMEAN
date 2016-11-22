@@ -1,6 +1,6 @@
 var app = angular.module("TreeApp");
 
-app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "ResourceService", "Upload", "$timeout", function ($scope, SubmitService, TopicService, ResourceService, Upload, $timeout) {
+app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "ResourceService", "TokenService", "Upload", "$timeout", function ($scope, SubmitService, TopicService, ResourceService, TokenService, Upload, $timeout) {
     SubmitService.getRecommendations().then(function (response) {
         $scope.recommendations = response.data;
     });
@@ -69,7 +69,7 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
                 var file = files[i];
                 var fdata = new FormData();
                 fdata.append('file', $scope.file);
-                fdata.append('upload_preset', "ihpn7nei");
+                fdata.append('upload_preset', TokenService.getImgUploadPreset());
                 console.log(fdata);
                 if (!file.$error) {
                     Upload.upload({
