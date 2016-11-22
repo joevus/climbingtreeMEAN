@@ -18,6 +18,7 @@ app.config(["$routeProvider", function($routeProvider) {
 
 app.service("TokenService", [function() {
     var userToken = "token";
+    var self = this;
     
     this.setToken = function(token) {
         localStorage[userToken] = token;
@@ -43,6 +44,19 @@ app.service("TokenService", [function() {
         localStorage.removeItem("admin");
     };
     
+    // For Image uploads
+    
+    this.setImgUploadPreset = function(preset) {
+        localStorage["uploadpreset"] = preset;  
+    };
+    
+    this.getImgUploadPreset = function() {
+        return localStorage["uploadpreset"];  
+    };
+    
+    this.removeImgUploadPreset = function() {
+        localStorage.removeItem("uploadpreset");  
+    };
     
 }]);
 
@@ -74,7 +88,10 @@ app.service("UserService", ["$http", "$location", "TokenService", "UserObjServic
         return $http.post("/auth/login", user).then(function(response) {
             TokenService.setToken(response.data.token);
             UserObjService.setUser(response.data.user._id);
-            if(response.data.user.admin) TokenService.setAdmin();
+            if(response.data.user.admin) {
+                TokenService.setAdmin();
+                TokenService.setImgUploadPreset(response.data.user.upload_preset);
+            } 
             return response;
         });
     };
@@ -83,6 +100,7 @@ app.service("UserService", ["$http", "$location", "TokenService", "UserObjServic
         TokenService.removeToken();
         UserObjService.removeUser();
         TokenService.removeAdmin();
+        TokenService.removeImgUploadPreset();
         $location.path("/");
     };
     

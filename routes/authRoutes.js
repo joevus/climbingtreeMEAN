@@ -3,6 +3,7 @@ var authRoutes = express.Router();
 var User = require("../models/user");
 var jwt = require("jsonwebtoken");
 var config = require("../config");
+var ImageHost = require("../models/imagehost");
 
 authRoutes.post("/login", function(req, res) {
     // Try to find the user with the submitted username
@@ -13,13 +14,23 @@ authRoutes.post("/login", function(req, res) {
         if(!user) {
             res.status(401).json({success: false, message: "User with the provided username was not found"})
         } else if (user) {
-            
             user.checkPassword(req.body.password, function(err, match) {
                 if(err) throw (err);
                 if(!match) res.status(401).json({success: false, message: "Incorrect password"});
                 else {
                     var token = jwt.sign(user.toObject(), config.secret, {expiresIn: "24h"});
-                    res.json({user: user.withoutPassword(), token: token, success: true, message: "Here's your token!"});
+                    // find upload preset for uploading images to cloudinary
+                    ImageHost.findOne({service: "cloudinary"}, function(err, imagehost) {
+                        if(err) res.status(500).send(err);
+                        var userObj = user.withoutPassword();
+                        if(user.admin) {
+                            console.log("user is admin");
+                            userObj.upload_preset = imagehost.upload_preset;
+                        }
+                        console.log(userObj);
+                        res.json({user: userObj, token: token, success: true, message: "Here's your token!"});
+                    });
+                    
                 }
             });
         }
