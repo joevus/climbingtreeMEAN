@@ -24,10 +24,8 @@ authRoutes.post("/login", function(req, res) {
                         if(err) res.status(500).send(err);
                         var userObj = user.withoutPassword();
                         if(user.admin) {
-                            console.log("user is admin");
                             userObj.upload_preset = imagehost.upload_preset;
                         }
-                        console.log(userObj);
                         res.json({user: userObj, token: token, success: true, message: "Here's your token!"});
                     });
                     
