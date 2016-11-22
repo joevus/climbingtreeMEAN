@@ -79,7 +79,15 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
                             upload_preset: "ihpn7nei"
                         },
                     }).then(function (resp) {
+                        console.log(resp);
                         $timeout(function () {
+                            if($scope.newResource) {
+                                $scope.newResource.imgUrl = resp.secure_url;
+                            } else {
+                                $scope.newResource = {};
+                                $scope.newResource.imgUrl = resp.data.secure_url;
+                                console.log($scope.newResource);
+                            }
                             $scope.log = 'file: ' +
                                 resp.config.fields.file.name +
                                 ', Response: ' + JSON.stringify(resp.data) +
