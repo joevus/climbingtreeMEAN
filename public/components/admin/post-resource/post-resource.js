@@ -87,7 +87,7 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
                         console.log(resp);
                         $timeout(function () {
                             if ($scope.newResource) {
-                                $scope.newResource.imgUrl = resp.secure_url;
+                                $scope.newResource.imgUrl = resp.data.secure_url;
                             } else {
                                 $scope.newResource = {};
                                 $scope.newResource.imgUrl = resp.data.secure_url;
