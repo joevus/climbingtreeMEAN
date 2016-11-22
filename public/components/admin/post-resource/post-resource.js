@@ -67,10 +67,6 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
             $scope.showProgress = true;
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                var fdata = new FormData();
-                fdata.append('file', $scope.file);
-                fdata.append('upload_preset', TokenService.getImgUploadPreset());
-                console.log(fdata);
                 if (!file.$error) {
                     Upload.upload({
                         url: 'https://api.cloudinary.com/v1_1/climbing-tree/image/upload',
@@ -81,17 +77,15 @@ app.controller("PostResourceCtrl", ["$scope", "SubmitService", "TopicService", "
                         },
                         fields: {
                             file: file,
-                            upload_preset: "ihpn7nei"
+                            upload_preset: TokenService.getImgUploadPreset()
                         },
                     }).then(function (resp) {
-                        console.log(resp);
                         $timeout(function () {
                             if ($scope.newResource) {
                                 $scope.newResource.imgUrl = resp.data.secure_url;
                             } else {
                                 $scope.newResource = {};
                                 $scope.newResource.imgUrl = resp.data.secure_url;
-                                console.log($scope.newResource);
                             }
                             $scope.log = 'file: ' +
                                 resp.config.fields.file.name +
