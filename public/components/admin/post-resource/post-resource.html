@@ -21,6 +21,10 @@
                 <div class="form-group">
                     <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'">Drop image here or click to upload</div>
                     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                    Upload progress:
+                    <ul>
+                        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+                    </ul>
                     <div class="img-progress-box">
                         <div class="img-progress-bar" ng-style="barWidth"></div>
                     </div>
@@ -49,12 +53,6 @@
                 </div>
                 <button class="btn btn-primary" ng-click="postResource(newResource, resourceTopic, newTopic, topicType)" ng-disabled=" (!resourceTopic._id && (!newTopic.name || !newTopic.parent) ) || !newResource.name  || !newResource.description || !newResource.url">Submit</button>
             </form>
-            Files:
-            <ul>
-                <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-            </ul>
-            Upload Log:
-            <pre>{{log}}</pre>
         </div>
         <div class="col-xs-12 col-md-7 col-md-pull-5">
             <div class="row">
