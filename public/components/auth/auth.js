@@ -100,7 +100,8 @@ app.factory("AuthInterceptor", ["$q", "$location", "TokenService", function($q, 
     return {
         request: function (config) {
             var token = TokenService.getToken();
-            if(token) {
+            // add Authorization header if there is a token AND if not sending request to cloudinary--to upload image
+            if(token && !/https:\/\/api.cloudinary.com/.test(config.url)) {
                 config.headers = config.headers || {};
                 config.headers.Authorization = "Bearer " + token;
             }
