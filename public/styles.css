@@ -121,10 +121,13 @@ h6.panel-title {
     height: 300px;
 }
 
+.carousel-caption {
+}
+
 .carousel-caption p {
     background-color: rgb(65,65,65);
     background-color: rgba(65,65,65,.9);
-    padding: 13px 12px;
+    padding: 20px 18px;
     border-radius: 6px;
 }
 
