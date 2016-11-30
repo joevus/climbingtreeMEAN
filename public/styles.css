@@ -123,6 +123,7 @@ h6.panel-title {
 
 .carousel-caption {
     bottom: 10px;
+    padding-bottom: 15px; 
 }
 
 .carousel-caption p {
