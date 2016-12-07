@@ -10,7 +10,7 @@ app.controller("SignupController", ["$scope", "$location", "UserService", functi
             UserService.signup(user).then(function (response) {
                 $location.path("/login");
             }, function(response) {
-                alert("There was a problem: " + response.data);
+                alert("There was a problem: " + response.data.message);
             });
         }
     }
