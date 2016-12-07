@@ -6,6 +6,8 @@ var config = require("../config");
 var ImageHost = require("../models/imagehost");
 
 authRoutes.post("/login", function(req, res) {
+    // change username to lower case before trying to find it.
+    req.body.username = req.body.username.toLowerCase();
     
     // Try to find the user with the submitted username
     User.findOne({username: req.body.username}, function(err, user) {
