@@ -26,6 +26,16 @@ html, body, .ngview-window, .container {
     font-size: 16pt;
 }
 
+/* Resource Page */
+.rp-resource-name {
+    display: inline-block;
+}
+
+.rep-rating-header {
+    display: inline-block;
+    margin-top: 0;
+}
+
 /* Footer */
 footer {
     position: absolute;

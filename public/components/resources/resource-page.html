@@ -1,14 +1,15 @@
 <div class="container resource-page">
     <div class="row">
-        <div class="col-xs-12 rp-header">
-            <h1>{{resource.name}}
+        <div class="col-xs-12 rp-resource-name">
+            <h1 class="rp-resource-name">{{resource.name}}</h1>
+            <h4 class="rep-rating-header">
                 <span class="rated-stars"><img ng-src="http://res.cloudinary.com/climbing-tree/image/upload/v1478281881/{{determineStar(resource, 1)}}" alt="" width=15></span>
                 <span class="rated-stars"><img ng-src="http://res.cloudinary.com/climbing-tree/image/upload/v1478281881/{{determineStar(resource, 2)}}" alt="" width=15></span>
                 <span class="rated-stars"><img ng-src="http://res.cloudinary.com/climbing-tree/image/upload/v1478281881/{{determineStar(resource, 3)}}" alt="" width=15></span>
                 <span class="rated-stars"><img ng-src="http://res.cloudinary.com/climbing-tree/image/upload/v1478281881/{{determineStar(resource, 4)}}" alt="" width=15></span>
                 <span class="rated-stars"><img ng-src="http://res.cloudinary.com/climbing-tree/image/upload/v1478281881/{{determineStar(resource, 5)}}" alt="" width=15></span>
                 <span class="num-ratings">({{resource.ratings.length}})</span>
-            </h1>
+            </h4>
         </div>
         <div class="col-xs-6 col-md-4 text-center">
             <button type="button" class="btn btn-default btn-lg btn-block" ng-click="backLink(resource.topic)">
